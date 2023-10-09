@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:horoscope_app/providers/chats/chat_provider.dart';
+import 'package:horoscope_app/db/entities/entities.dart';
 
-class OracleMessageBubble extends ConsumerWidget {
-  const OracleMessageBubble({super.key});
+class OracleMessageBubble extends StatelessWidget {
+  final Message message;
 
+  const OracleMessageBubble({super.key, required this.message});
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme;
-    final oracleMessage = ref.watch(chatOracleProvider);
 
     return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(
-            height: 80,
+            height: 20,
           ),
           Container(
             decoration: BoxDecoration(
@@ -23,52 +22,39 @@ class OracleMessageBubble extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(15)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text(oracleMessage.text,
-                  style: const TextStyle(color: Colors.white)),
+              child: Text(message.text,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  )),
             ),
           ),
           const SizedBox(
             height: 20,
           ),
-          _ImageBubble(),
+          _ImageBubble(message.imageUrl != null
+              ? (message.imageUrl!)
+              : 'https://pm1.narvii.com/7083/d8bad77dd802352b0587362104062c65a25e9392r1-798-420v2_128.jpg'),
           const SizedBox(
-            height: 8,
+            height: 20,
           ),
         ]);
   }
 }
-//   @override
-//   Widget build(BuildContext context) {
-//     final color = Theme.of(context).colorScheme;
 
-//     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-//       Container(
-//         decoration: BoxDecoration(
-//             color: color.secondary, borderRadius: BorderRadius.circular(15)),
-//         child: const Padding(
-//           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-//           child:
-//               Text('respuesta si / no ', style: TextStyle(color: Colors.white)),
-//         ),
-//       ),
-//       const SizedBox(
-//         height: 8,
-//       ),
-//       _ImageBubble(),
-//       const SizedBox(
-//         height: 8,
-//       ),
-//     ]);
-//   }
-// }
 class _ImageBubble extends StatelessWidget {
+  final String imageUrl;
+
+  const _ImageBubble(this.imageUrl);
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: Image.network(
-          "https://imagenes.20minutos.es/files/image_654_369/files/fp/uploads/imagenes/2020/06/23/chi.r_d.358-326-9188.jpeg",
+          imageUrl,
           width: size.width * 0.7,
           height: 250,
           fit: BoxFit.cover,
