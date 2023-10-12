@@ -31,6 +31,8 @@ class _HomeScreenView extends StatelessWidget {
             subTitle: 'Realiza una pregunta al oraculo',
             location: '/oracle'),
         _CustomListTile(
+            title: 'Tarot', subTitle: 'Consulta tu Tarot', location: '/tarot'),
+        _CustomListTile(
             title: 'Config',
             subTitle: 'Configuraciones de usuario',
             location: '/config'),

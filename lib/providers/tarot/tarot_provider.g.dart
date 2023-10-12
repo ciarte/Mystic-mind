@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'go_router.dart';
+part of 'tarot_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appRouterHash() => r'21883a3077b457c71c9c47d4159f51e5be5d32ca';
+String _$tarotCardsHash() => r'b6bb10533b200d42aeebbebc2ad71749b1214940';
 
-/// See also [appRouter].
-@ProviderFor(appRouter)
-final appRouterProvider = AutoDisposeProvider<GoRouter>.internal(
-  appRouter,
-  name: r'appRouterProvider',
+/// See also [tarotCards].
+@ProviderFor(tarotCards)
+final tarotCardsProvider = AutoDisposeFutureProvider<Tarot>.internal(
+  tarotCards,
+  name: r'tarotCardsProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appRouterHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$tarotCardsHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef AppRouterRef = AutoDisposeProviderRef<GoRouter>;
+typedef TarotCardsRef = AutoDisposeFutureProviderRef<Tarot>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

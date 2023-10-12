@@ -2,29 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:horoscope_app/db/entities/entities.dart';
 import 'package:horoscope_app/providers/providers.dart';
 
-class HoroscopeScreen extends ConsumerStatefulWidget {
-  const HoroscopeScreen({super.key});
+class TarotScreen extends ConsumerStatefulWidget {
+  const TarotScreen({super.key});
 
   @override
-  HoroscopeScreenState createState() => HoroscopeScreenState();
+  TarotScreenState createState() => TarotScreenState();
 }
 
-class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
-  String mySign = 'aries';
+class TarotScreenState extends ConsumerState<TarotScreen> {
   @override
   Widget build(BuildContext context) {
-    final horoscope = ref.watch(dayliHoroscopeProvider(mySign));
+    final tarot = ref.watch(tarotCardsProvider);
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('tu horoscopo'),
+          title: const Text('tu tarot'),
         ),
         body: Column(
           children: [
-            horoscope.when(
-              data: (data) => _HoroscopeText(data: data),
+            tarot.when(
+              data: (data) => _TarotText(data: data),
               loading: () => const CircularProgressIndicator(),
               error: (Object error, StackTrace stackTrace) => Text('$error'),
             ),
@@ -39,17 +39,17 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
   }
 }
 
-class _HoroscopeText extends StatelessWidget {
+class _TarotText extends StatelessWidget {
   final data;
-  const _HoroscopeText({super.key, this.data});
+  const _TarotText({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(data.date),
+        Text(data.name),
         AnimatedTextKit(isRepeatingAnimation: false, animatedTexts: [
-          TypewriterAnimatedText((data.horoscopeData),
+          TypewriterAnimatedText((data.desc),
               speed: const Duration(milliseconds: 60))
         ]),
       ],

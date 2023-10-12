@@ -35,6 +35,12 @@ GoRouter appRouter(AppRouterRef ref) {
           return const UserConfigScreen();
         },
       ),
+      GoRoute(
+        path: '/tarot',
+        builder: (BuildContext context, GoRouterState state) {
+          return const TarotScreen();
+        },
+      ),
     ],
   );
 }
