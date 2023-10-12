@@ -6,7 +6,7 @@ part of 'tarot_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$tarotCardsHash() => r'b6bb10533b200d42aeebbebc2ad71749b1214940';
+String _$tarotCardsHash() => r'afc4974ae58fdb9ec70e7f68ca2d14bfbb6dc9ac';
 
 /// See also [tarotCards].
 @ProviderFor(tarotCards)

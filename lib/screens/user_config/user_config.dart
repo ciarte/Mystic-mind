@@ -12,7 +12,7 @@ class UserConfigScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Configuraciones de usuario',
+          'Configuracion de usuario',
         ),
       ),
       body: Center(
@@ -30,20 +30,20 @@ class UserConfigScreen extends ConsumerWidget {
               ref.read(darkModeProvider.notifier).toggleDarkMode();
             },
           ),
-          const Text('Fernando Herrera', style: TextStyle(fontSize: 25)),
-          TextButton.icon(
-            icon: const Icon(
-              Icons.add,
-              size: 50,
-            ),
-            label: const Text('0', style: TextStyle(fontSize: 100)),
-            onPressed: () {},
-          ),
+          // const Text('Fernando Herrera', style: TextStyle(fontSize: 25)),
+          // TextButton.icon(
+          //   icon: const Icon(
+          //     Icons.add,
+          //     size: 50,
+          //   ),
+          //   label: const Text('0', style: TextStyle(fontSize: 100)),
+          //   onPressed: () {},
+          // ),
           const Spacer(flex: 2),
         ],
       )),
       floatingActionButton: FloatingActionButton.extended(
-        label: const Text('Nombre aleatorio'),
+        label: const Text('cambia tus datos'),
         icon: const Icon(Icons.refresh_rounded),
         onPressed: () {},
       ),

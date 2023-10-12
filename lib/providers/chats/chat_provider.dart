@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:horoscope_app/db/entities/message_entity.dart';
-import 'package:horoscope_app/db/helpers/oracle_answer.dart';
+import 'package:horoscope_app/infrastructure/datasources/oracle_answer.dart';
 
 class ChatOracle extends ChangeNotifier {
   final ScrollController chatScrollController = ScrollController();

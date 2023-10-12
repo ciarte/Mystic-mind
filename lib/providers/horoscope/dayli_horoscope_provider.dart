@@ -1,4 +1,4 @@
-import 'package:horoscope_app/db/helpers/horoscope_request.dart';
+import 'package:horoscope_app/infrastructure/datasources/horoscope_request.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../db/entities/horoscope_entity.dart';
