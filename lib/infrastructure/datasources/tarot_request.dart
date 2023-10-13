@@ -8,7 +8,8 @@ class TarotRequest {
     final dio = Dio();
 
     final response = await dio.get(
-      'https://horoscope-astrology.p.rapidapi.com/tarotcard',
+      // 'https://horoscope-astrology.p.rapidapi.com/tarotcard',
+      'https://horoscope-astrology.p.rapidapi.com/threetarotcards',
       options: Options(
         headers: {
           'X-RapidAPI-Key':
@@ -18,13 +19,10 @@ class TarotRequest {
       ),
     );
 
-    print(response.data);
-    
     final tarotDbResponse = TarotModel.fromJson(response.data);
     final List<Tarot> tarot = tarotDbResponse.res
         .map((tarotDb) => TarotMapper.tarotToEntity(tarotDb))
         .toList();
-    print(tarot);
 
     return tarot;
   }

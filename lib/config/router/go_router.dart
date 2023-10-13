@@ -41,6 +41,12 @@ GoRouter appRouter(AppRouterRef ref) {
           return const TarotScreen();
         },
       ),
+      GoRoute(
+        path: '/compatibility',
+        builder: (BuildContext context, GoRouterState state) {
+          return const CompatibilityScreen();
+        },
+      ),
     ],
   );
 }

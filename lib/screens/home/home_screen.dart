@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:horoscope_app/screens/home/menu_items.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,45 +21,51 @@ class _HomeScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: const [
-        _CustomListTile(
-            title: 'Horoscopo',
-            subTitle: 'Horoscopo del dia',
-            location: '/horoscope'),
-        _CustomListTile(
-            title: 'Oracle',
-            subTitle: 'Realiza una pregunta al oraculo',
-            location: '/oracle'),
-        _CustomListTile(
-            title: 'Tarot', subTitle: 'Consulta tu Tarot', location: '/tarot'),
-        _CustomListTile(
-            title: 'Config',
-            subTitle: 'Configuraciones de usuario',
-            location: '/config'),
-      ],
-    );
+    return GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, // 2 tarjetas por columna
+          crossAxisSpacing: 8, // Espacio entre columnas
+          mainAxisSpacing: 8, // Espacio entre filas
+        ),
+        itemCount: appMenuItems.length,
+        itemBuilder: (BuildContext context, int index) {
+          final menuItem = appMenuItems[index];
+          return _CustomListTile(
+            menuItem: menuItem,
+          );
+        });
   }
 }
 
 class _CustomListTile extends StatelessWidget {
-  final String title;
-  final String subTitle;
-  final String location;
+  final MenuItem menuItem;
 
-  const _CustomListTile({
-    required this.title,
-    required this.subTitle,
-    required this.location,
-  });
+  const _CustomListTile({required this.menuItem});
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(title),
-      subtitle: Text(subTitle),
-      trailing: const Icon(Icons.arrow_forward_ios_rounded),
-      onTap: () => context.push(location),
-    );
+    return Card(
+        // color: Colors.deepPurpleAccent,
+        shadowColor: Colors.purple,
+        elevation: 0.5,
+        child: InkWell(
+          onTap: () => context.push(menuItem.location),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                menuItem.image,
+                height: 120,
+                width: 120,
+                fit: BoxFit.cover,
+              ),
+              ListTile(
+                title: Text(menuItem.title),
+                subtitle: Text(menuItem.subTitle),
+                contentPadding: EdgeInsets.all(8),
+              ),
+            ],
+          ),
+        ));
   }
 }
