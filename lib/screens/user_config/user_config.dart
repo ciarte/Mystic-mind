@@ -8,7 +8,7 @@ class UserConfigScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isDarkmode = ref.watch(darkModeProvider);
-
+    final selectedLanguage = ref.watch(currentLanguageProvider);
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: const Color(0xC5751342),
@@ -34,15 +34,43 @@ class UserConfigScreen extends ConsumerWidget {
               ref.read(darkModeProvider.notifier).toggleDarkMode();
             },
           ),
-          // const Text('Fernando Herrera', style: TextStyle(fontSize: 25)),
-          // TextButton.icon(
-          //   icon: const Icon(
-          //     Icons.add,
-          //     size: 50,
-          //   ),
-          //   label: const Text('0', style: TextStyle(fontSize: 100)),
-          //   onPressed: () {},
-          // ),
+          ExpansionTile(
+            title: Text('Idioma'),
+            subtitle: Text(getSubtitle(selectedLanguage)),
+            initiallyExpanded: false,
+            children: [
+              RadioListTile(
+                title: const Text('English'),
+                value: Language.en,
+                groupValue: selectedLanguage,
+                onChanged: (value) {
+                  ref
+                      .read(currentLanguageProvider.notifier)
+                      .changeLanguage(value!);
+                },
+              ),
+              RadioListTile(
+                title: const Text('Español'),
+                value: Language.es,
+                groupValue: selectedLanguage,
+                onChanged: (value) {
+                  ref
+                      .read(currentLanguageProvider.notifier)
+                      .changeLanguage(value!);
+                },
+              ),
+              RadioListTile(
+                title: const Text('Français'),
+                value: Language.fr,
+                groupValue: selectedLanguage,
+                onChanged: (value) {
+                  ref
+                      .read(currentLanguageProvider.notifier)
+                      .changeLanguage(value!);
+                },
+              )
+            ],
+          ),
           const Spacer(flex: 2),
         ],
       )),
@@ -52,5 +80,18 @@ class UserConfigScreen extends ConsumerWidget {
         onPressed: () {},
       ),
     );
+  }
+}
+
+String getSubtitle(Language selectedLanguage) {
+  switch (selectedLanguage) {
+    case Language.en:
+      return 'English';
+    case Language.es:
+      return 'Español';
+    case Language.fr:
+      return 'Français';
+    default:
+      return '';
   }
 }

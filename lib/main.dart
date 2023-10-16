@@ -14,13 +14,14 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final selectedLanguage = ref.watch(currentLanguageProvider);
     final router = ref.watch(appRouterProvider);
     final isDarkmode = ref.watch(darkModeProvider);
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: AppTheme(selectedColor: 1, isDarkmode: isDarkmode).theme(),
+      theme: AppTheme(selectedColor: 0, isDarkmode: isDarkmode).theme(),
       routerConfig: router,
     );
   }
