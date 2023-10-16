@@ -11,9 +11,13 @@ class UserConfigScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Configuracion de usuario',
-        ),
+        // backgroundColor: const Color(0xC5751342),
+        centerTitle: true,
+        title: const Text('Configuracion',
+            style: TextStyle(
+              overflow: TextOverflow.ellipsis,
+              // color: Colors.white
+            )),
       ),
       body: Center(
           child: Column(

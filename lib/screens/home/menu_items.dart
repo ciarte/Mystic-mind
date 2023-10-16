@@ -20,26 +20,26 @@ const appMenuItems = <MenuItem>[
   ),
   MenuItem(
     title: 'Compatibilidad',
-    subTitle: 'Compatibilidad entre signos',
+    subTitle: 'Match entre signos',
     location: '/compatibility',
     image: 'assets/consejos.jpg',
   ),
   MenuItem(
     title: 'Oraculo',
-    subTitle: 'Realiza una pregunta al oraculo',
+    subTitle: 'Pregunta al Oraculo',
     location: '/oracle',
     image: 'assets/oraculo.jpg',
   ),
   MenuItem(
     title: 'Tarot',
-    subTitle: 'Consulta tu Tarot',
+    subTitle: 'Consulta el Tarot',
     location: '/tarot',
     image: 'assets/tarot.jpg',
   ),
-  MenuItem(
-    title: 'Config',
-    subTitle: 'Configuraciones de usuario',
-    location: '/config',
-    image: 'assets/oraculo.jpg',
-  ),
+  // MenuItem(
+  //   title: 'Config',
+  //   subTitle: 'Configuracion',
+  //   location: '/config',
+  //   image: 'assets/oraculo.jpg',
+  // ),
 ];
