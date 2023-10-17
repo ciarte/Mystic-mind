@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:horoscope_app/config/config.dart';
 import 'package:horoscope_app/providers/providers.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 void main() {
   runApp(const ProviderScope(

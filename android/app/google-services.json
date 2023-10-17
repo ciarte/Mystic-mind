@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "669731608512",
+    "firebase_url": "https://horoscopeapp-ab19f-default-rtdb.firebaseio.com",
+    "project_id": "horoscopeapp-ab19f",
+    "storage_bucket": "horoscopeapp-ab19f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:669731608512:android:a6097354c8bb99f4f9da25",
+        "android_client_info": {
+          "package_name": "com.example.horoscope_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-OK1QRe7QZP3P53G7sfwx6Tff7AbG0BU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
