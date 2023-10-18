@@ -9,12 +9,18 @@ part 'go_router.g.dart';
 GoRouter appRouter(AppRouterRef ref) {
   /// The route configuration.
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: '/login',
     routes: [
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
           return const HomeScreen();
+        },
+      ),
+      GoRoute(
+        path: '/login',
+        builder: (BuildContext context, GoRouterState state) {
+          return const LoginScreen();
         },
       ),
       GoRoute(
