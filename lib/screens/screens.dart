@@ -5,3 +5,5 @@ export 'user_config/user_config.dart';
 export 'tarot/tarot_screen.dart';
 export 'compatibility/compatibility_screen.dart';
 export 'login/login_screen.dart';
+export 'auth/uath_checker.dart';
+export 'register/register_screen.dart';

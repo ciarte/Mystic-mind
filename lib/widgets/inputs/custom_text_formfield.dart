@@ -4,9 +4,15 @@ class CustomTextForm extends StatelessWidget {
   const CustomTextForm({
     super.key,
     required this.inputName,
+    this.onChanged,
+    this.validator,
+    this.controller,
   });
 
   final String inputName;
+  final Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +34,10 @@ class CustomTextForm extends StatelessWidget {
                 ))),
         TextFormField(
           autocorrect: false,
-          // style: const TextStyle(color: Colors.blue),
-          validator: (_input) {},
-          onSaved: (_input) {},
+          onChanged: onChanged,
+          validator: validator,
+          controller: controller,
+          // onSaved: (_input) {},
           decoration: InputDecoration(
             filled: true,
             fillColor: Color.fromRGBO(255, 255, 255, 0.6),

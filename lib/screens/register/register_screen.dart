@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:horoscope_app/screens/vm/login_controller.dart';
 import 'package:horoscope_app/screens/vm/login_state.dart';
 import 'package:horoscope_app/widgets/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-        body: Align(alignment: Alignment.center, child: LoginPage()));
+        body: Align(alignment: Alignment.center, child: RegisterPage()));
   }
 }
 
-class LoginPage extends ConsumerStatefulWidget {
-  const LoginPage({
+class RegisterPage extends ConsumerStatefulWidget {
+  const RegisterPage({
     super.key,
   });
 
   @override
-  LoginPageState createState() => LoginPageState();
+  RegisterPageState createState() => RegisterPageState();
 }
 
-class LoginPageState extends ConsumerState<LoginPage> {
+class RegisterPageState extends ConsumerState<RegisterPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -41,6 +40,7 @@ class LoginPageState extends ConsumerState<LoginPage> {
     }));
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+    final TextEditingController passwordController2 = TextEditingController();
     final width = MediaQuery.of(context).size.width;
     bool rememberUser = false;
 
@@ -60,7 +60,7 @@ class LoginPageState extends ConsumerState<LoginPage> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const HeadingWidget(),
+          const RegisterHeadingWidget(),
           SizedBox(
               child: Form(
                   key: _formKey,
@@ -77,48 +77,30 @@ class LoginPageState extends ConsumerState<LoginPage> {
                         PasswordTextForm(
                             inputName: 'Contraseña',
                             controller: passwordController),
-                        CheckboxListTile(
-                            title: const Text('Recordarme',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w400,
-                                )),
-                            value: false,
-                            controlAffinity: ListTileControlAffinity.leading,
-                            onChanged: (value) {
-                              rememberUser = !rememberUser;
-                            }),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            '¿Olvidaste tu contraseña?',
-                            style: TextStyle(
-                              color: Color.fromRGBO(167, 12, 53, 1),
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
+                        PasswordTextForm(
+                            inputName: 'Confirma Contraseña',
+                            controller: passwordController2),
                         const Divider(
                           thickness: 2,
                           color: Colors.black26,
                         ),
                         const SizedBox(height: 15),
                         SessionButton(
-                            session: 'Continuar con Google',
+                            session: 'Registrate con Google',
                             icon: Image.asset('assets/google.jpg')),
                         const SizedBox(height: 20),
                         SessionButton(
-                            session: 'Continuar con Facebook',
+                            session: 'Registrate con Facebook',
                             icon:
                                 Image.asset('assets/facebook.png', height: 30)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Text('¿Aún no tienes cuenta? '),
+                            const Text('¿Ya tienes una cuenta? '),
                             TextButton(
-                                onPressed: () => context.go('/register'),
+                                onPressed: () {},
                                 child: const Text(
-                                  'Registrate',
+                                  'Continuar',
                                   style: TextStyle(
                                     color: Color.fromRGBO(167, 12, 53, 1),
                                     fontWeight: FontWeight.w600,
@@ -127,8 +109,14 @@ class LoginPageState extends ConsumerState<LoginPage> {
                           ],
                         ),
                         LoginButton(onPressed: () {
-                          ref.read(loginControllerProvider.notifier).login(
-                              emailController.text, passwordController.text);
+                          if (passwordController.text !=
+                              passwordController2.text) {
+                            print(
+                                'la Contraseña no coincide ${passwordController.text} ${passwordController2.text}');
+                          } else {
+                            ref.read(loginControllerProvider.notifier).create(
+                                emailController.text, passwordController.text);
+                          }
                         }),
                       ]))),
         ],
@@ -137,8 +125,8 @@ class LoginPageState extends ConsumerState<LoginPage> {
   }
 }
 
-class HeadingWidget extends StatelessWidget {
-  const HeadingWidget({
+class RegisterHeadingWidget extends StatelessWidget {
+  const RegisterHeadingWidget({
     super.key,
   });
 
@@ -155,12 +143,12 @@ class HeadingWidget extends StatelessWidget {
           Text(
             'Mystic Mind',
             style: GoogleFonts.macondo(
-              fontSize: 36,
+              fontSize: 32,
               fontWeight: FontWeight.w500,
             ),
           ),
           const Text(
-            'Iniciar Sesion',
+            'Registro',
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w500,

@@ -9,12 +9,12 @@ part 'go_router.g.dart';
 GoRouter appRouter(AppRouterRef ref) {
   /// The route configuration.
   return GoRouter(
-    initialLocation: '/login',
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const HomeScreen();
+          return const AuthChecker();
         },
       ),
       GoRoute(
@@ -24,9 +24,21 @@ GoRouter appRouter(AppRouterRef ref) {
         },
       ),
       GoRoute(
-        path: '/oracle',
+        path: '/register',
         builder: (BuildContext context, GoRouterState state) {
-          return const OracleScreen();
+          return const RegisterScreen();
+        },
+      ),
+      GoRoute(
+        path: '/home',
+        builder: (BuildContext context, GoRouterState state) {
+          return const HomeScreen();
+        },
+      ),
+      GoRoute(
+        path: '/compatibility',
+        builder: (BuildContext context, GoRouterState state) {
+          return const CompatibilityScreen();
         },
       ),
       GoRoute(
@@ -36,9 +48,9 @@ GoRouter appRouter(AppRouterRef ref) {
         },
       ),
       GoRoute(
-        path: '/config',
+        path: '/oracle',
         builder: (BuildContext context, GoRouterState state) {
-          return const UserConfigScreen();
+          return const OracleScreen();
         },
       ),
       GoRoute(
@@ -48,9 +60,9 @@ GoRouter appRouter(AppRouterRef ref) {
         },
       ),
       GoRoute(
-        path: '/compatibility',
+        path: '/config',
         builder: (BuildContext context, GoRouterState state) {
-          return const CompatibilityScreen();
+          return const UserConfigScreen();
         },
       ),
     ],

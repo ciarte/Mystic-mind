@@ -13,7 +13,12 @@
           "package_name": "com.example.horoscope_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "669731608512-g17caaj4k7loifs35c2qctomqs9bmpqn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC-OK1QRe7QZP3P53G7sfwx6Tff7AbG0BU"
@@ -21,7 +26,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "669731608512-g17caaj4k7loifs35c2qctomqs9bmpqn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "669731608512-1erdkkv1mgk3n7qdhv8nq3n0h9dt38s0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.horoscopeapp"
+              }
+            }
+          ]
         }
       }
     }

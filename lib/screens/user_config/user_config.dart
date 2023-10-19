@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:horoscope_app/providers/providers.dart';
+import 'package:horoscope_app/screens/vm/login_controller.dart';
 
 class UserConfigScreen extends ConsumerWidget {
   const UserConfigScreen({super.key});
@@ -9,6 +10,7 @@ class UserConfigScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDarkmode = ref.watch(darkModeProvider);
     final selectedLanguage = ref.watch(currentLanguageProvider);
+    final logOut = ref.watch(loginControllerProvider);
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: const Color(0xC5751342),
@@ -34,8 +36,24 @@ class UserConfigScreen extends ConsumerWidget {
               ref.read(darkModeProvider.notifier).toggleDarkMode();
             },
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                  onPressed: () {
+                    ref.read(loginControllerProvider.notifier).signOut();
+                  },
+                  child: const Text(
+                    'logOut',
+                    style: TextStyle(
+                      color: Color.fromRGBO(167, 12, 53, 1),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )),
+            ],
+          ),
           ExpansionTile(
-            title: Text('Idioma'),
+            title: const Text('Idioma'),
             subtitle: Text(getSubtitle(selectedLanguage)),
             initiallyExpanded: false,
             children: [
@@ -59,16 +77,16 @@ class UserConfigScreen extends ConsumerWidget {
                       .changeLanguage(value!);
                 },
               ),
-              RadioListTile(
-                title: const Text('Français'),
-                value: Language.fr,
-                groupValue: selectedLanguage,
-                onChanged: (value) {
-                  ref
-                      .read(currentLanguageProvider.notifier)
-                      .changeLanguage(value!);
-                },
-              )
+              // RadioListTile(
+              //   title: const Text('Français'),
+              //   value: Language.fr,
+              //   groupValue: selectedLanguage,
+              //   onChanged: (value) {
+              //     ref
+              //         .read(currentLanguageProvider.notifier)
+              //         .changeLanguage(value!);
+              //   },
+              // )
             ],
           ),
           const Spacer(flex: 2),

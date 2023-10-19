@@ -4,9 +4,15 @@ class PasswordTextForm extends StatelessWidget {
   const PasswordTextForm({
     super.key,
     required this.inputName,
+    this.onChanged,
+    this.validator,
+    this.controller,
   });
 
   final String inputName;
+  final Function(String)? onChanged;
+  final String? Function(String?)? validator;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +35,9 @@ class PasswordTextForm extends StatelessWidget {
         TextFormField(
           autocorrect: false,
           obscureText: true,
-          // style: const TextStyle(color: Colors.blue),
-          validator: (_input) {},
-          onSaved: (_input) {},
+          onChanged: onChanged,
+          validator: validator,
+          controller: controller,
           decoration: InputDecoration(
             filled: true,
             fillColor: const Color.fromRGBO(255, 255, 255, 0.6),

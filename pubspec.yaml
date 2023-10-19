@@ -42,13 +42,14 @@ dependencies:
   animated_text_kit: ^4.2.2
   animate_do: ^3.0.2
   # translator: ^0.1.7
-  firebase_core: ^2.17.0
-  cloud_firestore: ^4.9.3
-  firebase_auth: ^4.10.1
-  firebase_database: ^10.2.7
-  firebase_storage: ^11.2.8
+  firebase_core: ^2.19.0
+  cloud_firestore: ^4.11.0
+  firebase_auth: ^4.11.1
+  firebase_database: ^10.3.1
+  firebase_storage: ^11.3.1
   firebase_analytics: ^10.5.1
   google_fonts: ^6.1.0
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
