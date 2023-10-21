@@ -7,3 +7,4 @@ export 'inputs/custom_text_formfield.dart';
 export 'inputs/password_text_formfield.dart';
 export 'buttons/login_button.dart';
 export 'buttons/session_button.dart';
+export 'home/heading.dart';

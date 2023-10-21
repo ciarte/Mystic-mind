@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 import 'package:horoscope_app/screens/vm/login_controller.dart';
 import 'package:horoscope_app/screens/vm/login_state.dart';
 import 'package:horoscope_app/widgets/widgets.dart';
@@ -60,7 +60,10 @@ class RegisterPageState extends ConsumerState<RegisterPage> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const RegisterHeadingWidget(),
+          const HeadingWidget(
+            title: 'Mystic Mind',
+            subtitle: 'Registro',
+          ),
           SizedBox(
               child: Form(
                   key: _formKey,
@@ -98,9 +101,9 @@ class RegisterPageState extends ConsumerState<RegisterPage> {
                           children: [
                             const Text('¿Ya tienes una cuenta? '),
                             TextButton(
-                                onPressed: () {},
+                                onPressed: () => context.go('/login'),
                                 child: const Text(
-                                  'Continuar',
+                                  'Inicia sesion',
                                   style: TextStyle(
                                     color: Color.fromRGBO(167, 12, 53, 1),
                                     fontWeight: FontWeight.w600,
@@ -108,52 +111,23 @@ class RegisterPageState extends ConsumerState<RegisterPage> {
                                 )),
                           ],
                         ),
-                        LoginButton(onPressed: () {
-                          if (passwordController.text !=
-                              passwordController2.text) {
-                            print(
-                                'la Contraseña no coincide ${passwordController.text} ${passwordController2.text}');
-                          } else {
-                            ref.read(loginControllerProvider.notifier).create(
-                                emailController.text, passwordController.text);
-                          }
-                        }),
+                        LoginButton(
+                            nameButton: 'Continuar',
+                            onPressed: () {
+                              if (passwordController.text !=
+                                  passwordController2.text) {
+                                print(
+                                    'la Contraseña no coincide ${passwordController.text} ${passwordController2.text}');
+                              } else {
+                                ref
+                                    .read(loginControllerProvider.notifier)
+                                    .create((emailController.text).trim(),
+                                        passwordController.text);
+
+                                context.go('/userRegister');
+                              }
+                            }),
                       ]))),
-        ],
-      ),
-    );
-  }
-}
-
-class RegisterHeadingWidget extends StatelessWidget {
-  const RegisterHeadingWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return SizedBox(
-      height: height * 0.12,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Mystic Mind',
-            style: GoogleFonts.macondo(
-              fontSize: 32,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const Text(
-            'Registro',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
         ],
       ),
     );

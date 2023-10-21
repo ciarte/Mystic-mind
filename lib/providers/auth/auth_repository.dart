@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthRepository {
   const AuthRepository(this._auth);
@@ -42,6 +43,33 @@ class AuthRepository {
       }
     } catch (e) {
       throw AuthException(e.toString());
+    }
+  }
+
+  Future<void> updateUser(String name, String birthday) async {
+    try {
+      User? user = _auth.currentUser;
+      if (user != null) {
+        print(user);
+        Map<String, dynamic> updatedUserData = {
+          'displayName': name,
+          'birthday': birthday,
+        };
+        await user.updateDisplayName(name);
+
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .update(updatedUserData);
+
+        print(user);
+      }
+    } on FirebaseAuthException catch (e) {
+      // Manejo de errores específicos de FirebaseAuth
+      // ...
+    } catch (e) {
+      // Manejo de errores genéricos
+      // ...
     }
   }
 }

@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:horoscope_app/screens/vm/login_controller.dart';
 import 'package:horoscope_app/screens/vm/login_state.dart';
 import 'package:horoscope_app/widgets/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -60,7 +59,10 @@ class LoginPageState extends ConsumerState<LoginPage> {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const HeadingWidget(),
+          const HeadingWidget(
+            title: 'Mystic Mind',
+            subtitle: 'Iniciar sesion',
+          ),
           SizedBox(
               child: Form(
                   key: _formKey,
@@ -126,46 +128,14 @@ class LoginPageState extends ConsumerState<LoginPage> {
                                 )),
                           ],
                         ),
-                        LoginButton(onPressed: () {
-                          ref.read(loginControllerProvider.notifier).login(
-                              emailController.text, passwordController.text);
-                        }),
+                        LoginButton(
+                            nameButton: 'Iniciar sesion',
+                            onPressed: () {
+                              ref.read(loginControllerProvider.notifier).login(
+                                  emailController.text,
+                                  passwordController.text);
+                            }),
                       ]))),
-        ],
-      ),
-    );
-  }
-}
-
-class HeadingWidget extends StatelessWidget {
-  const HeadingWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return SizedBox(
-      height: height * 0.12,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Mystic Mind',
-            style: GoogleFonts.macondo(
-              fontSize: 36,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const Text(
-            'Iniciar Sesion',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
         ],
       ),
     );

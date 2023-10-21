@@ -30,6 +30,12 @@ GoRouter appRouter(AppRouterRef ref) {
         },
       ),
       GoRoute(
+        path: '/userRegister',
+        builder: (BuildContext context, GoRouterState state) {
+          return const UserDataScreen();
+        },
+      ),
+      GoRoute(
         path: '/home',
         builder: (BuildContext context, GoRouterState state) {
           return const HomeScreen();
