@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:horoscope_app/providers/providers.dart';
 import 'package:horoscope_app/screens/vm/login_controller.dart';
+import 'package:horoscope_app/widgets/widgets.dart';
 
 class UserConfigScreen extends ConsumerWidget {
   const UserConfigScreen({super.key});
@@ -11,93 +13,62 @@ class UserConfigScreen extends ConsumerWidget {
     final isDarkmode = ref.watch(darkModeProvider);
     final selectedLanguage = ref.watch(currentLanguageProvider);
     final logOut = ref.watch(loginControllerProvider);
-    return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: const Color(0xC5751342),
-        centerTitle: true,
-        title: const Text('Configuracion',
-            style: TextStyle(
-              overflow: TextOverflow.ellipsis,
-              // color: Colors.white
-            )),
+    return Column(children: [
+      const HeadingWidget(
+        // title: 'Mystic Mind',
+        subtitle: 'Configuracion',
       ),
-      body: Center(
-          child: Column(
+      const Spacer(flex: 1),
+      IconButton(
+        // icon: const Icon( Icons.light_mode_outlined, size: 100 ),
+        icon: Icon(
+            isDarkmode ? Icons.dark_mode_outlined : Icons.light_mode_outlined,
+            size: 100),
+        onPressed: () {
+          ref.read(darkModeProvider.notifier).toggleDarkMode();
+        },
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Spacer(flex: 1),
-          IconButton(
-            // icon: const Icon( Icons.light_mode_outlined, size: 100 ),
-            icon: Icon(
-                isDarkmode
-                    ? Icons.dark_mode_outlined
-                    : Icons.light_mode_outlined,
-                size: 100),
-            onPressed: () {
-              ref.read(darkModeProvider.notifier).toggleDarkMode();
+          TextButton(
+              onPressed: () {
+                ref.read(loginControllerProvider.notifier).signOut();
+              },
+              child: const Text(
+                'logOut',
+                style: TextStyle(
+                  color: Color.fromRGBO(167, 12, 53, 1),
+                  fontWeight: FontWeight.w600,
+                ),
+              )),
+        ],
+      ),
+      ExpansionTile(
+        title: const Text('Idioma'),
+        subtitle: Text(getSubtitle(selectedLanguage)),
+        initiallyExpanded: false,
+        children: [
+          RadioListTile(
+            title: const Text('English'),
+            value: Language.en,
+            groupValue: selectedLanguage,
+            onChanged: (value) {
+              ref.read(currentLanguageProvider.notifier).changeLanguage(value!);
             },
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                  onPressed: () {
-                    ref.read(loginControllerProvider.notifier).signOut();
-                  },
-                  child: const Text(
-                    'logOut',
-                    style: TextStyle(
-                      color: Color.fromRGBO(167, 12, 53, 1),
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )),
-            ],
+          RadioListTile(
+            title: const Text('Español'),
+            value: Language.es,
+            groupValue: selectedLanguage,
+            onChanged: (value) {
+              ref.read(currentLanguageProvider.notifier).changeLanguage(value!);
+            },
           ),
-          ExpansionTile(
-            title: const Text('Idioma'),
-            subtitle: Text(getSubtitle(selectedLanguage)),
-            initiallyExpanded: false,
-            children: [
-              RadioListTile(
-                title: const Text('English'),
-                value: Language.en,
-                groupValue: selectedLanguage,
-                onChanged: (value) {
-                  ref
-                      .read(currentLanguageProvider.notifier)
-                      .changeLanguage(value!);
-                },
-              ),
-              RadioListTile(
-                title: const Text('Español'),
-                value: Language.es,
-                groupValue: selectedLanguage,
-                onChanged: (value) {
-                  ref
-                      .read(currentLanguageProvider.notifier)
-                      .changeLanguage(value!);
-                },
-              ),
-              // RadioListTile(
-              //   title: const Text('Français'),
-              //   value: Language.fr,
-              //   groupValue: selectedLanguage,
-              //   onChanged: (value) {
-              //     ref
-              //         .read(currentLanguageProvider.notifier)
-              //         .changeLanguage(value!);
-              //   },
-              // )
-            ],
-          ),
-          const Spacer(flex: 2),
         ],
-      )),
-      floatingActionButton: FloatingActionButton.extended(
-        label: const Text('cambia tus datos'),
-        icon: const Icon(Icons.refresh_rounded),
-        onPressed: () {},
       ),
-    );
+      const Spacer(flex: 2),
+    ]);
   }
 }
 

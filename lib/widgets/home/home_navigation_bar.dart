@@ -22,7 +22,8 @@ class BottomNavigationBarExample extends StatefulWidget {
 class _BottomNavigationBarExampleState
     extends State<BottomNavigationBarExample> {
   int _selectedIndex = 0;
-  List<Color> backgroundColorList = [Colors.red, Colors.pink];
+
+  // List<Color> backgroundColorList = [Colors.red, Colors.pink];
   static const List<Widget> _widgetOptions = <Widget>[
     MenuView(),
     UserConfigScreen(),
@@ -34,42 +35,97 @@ class _BottomNavigationBarExampleState
     });
   }
 
-  Color getBackgroundColor() {
-    return backgroundColorList[_selectedIndex];
-  }
+  // Color getBackgroundColor() {
+  //   return backgroundColorList[_selectedIndex];
+  // }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor: const Color(0xFF3c096c),
-        // appBar: AppBar(
-        //   backgroundColor: Color(0xC5751342),
-        //   centerTitle: true,
-        //   title: const Text('NoCountry Horoscopo',
-        //       style: TextStyle(
-        //           overflow: TextOverflow.ellipsis, color: Colors.white)),
-        // ),
-        body: Center(
-          child: _widgetOptions.elementAt(_selectedIndex),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+        body: Stack(children: [
+          Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    tileMode: TileMode.decal,
+                    stops: [
+                  0.1,
+                  0.6
+                ],
+                    colors: [
+                  Color.fromRGBO(254, 211, 170, 1),
+                  Color.fromRGBO(191, 141, 187, 1),
+                ])),
+            child: _widgetOptions.elementAt(_selectedIndex),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            child: Container(
+              height: 50,
+              width: MediaQuery.of(context).size.width,
+              child: CustomPaint(
+                // size: Size(MediaQuery.of(context).size.width, 50),
+                painter: _CustomNavigtor(),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      IconButton(
+                        iconSize: 32,
+                        isSelected: _selectedIndex == 0 ? true : false,
+                        selectedIcon: const Icon(Icons.home),
+                        icon: const Icon(Icons.home_outlined),
+                        color: Colors.white,
+                        onPressed: () {
+                          _onItemTapped(0);
+                        },
+                      ),
+                      IconButton(
+                        iconSize: 32,
+                        isSelected: _selectedIndex == 1 ? true : false,
+                        selectedIcon: const Icon(Icons.person),
+                        icon: const Icon(Icons.person_outline),
+                        color: Colors.white,
+                        onPressed: () {
+                          _onItemTapped(1);
+                        },
+                      ),
+                    ]),
+              ),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          // selectedItemColor: Colors.amber[800],
-          onTap: _onItemTapped,
-          backgroundColor: getBackgroundColor(),
-        ),
+          ),
+        ]),
       ),
     );
+  }
+}
+
+class _CustomNavigtor extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+
+    paint.color = const Color.fromRGBO(167, 12, 53, 1);
+    paint.style = PaintingStyle.fill;
+    paint.strokeWidth = 5;
+
+    Path path = Path();
+
+    path.moveTo(25, 0);
+    path.lineTo(size.width - 25, 0);
+    path.quadraticBezierTo(size.width, 0, size.width, 25);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.lineTo(0, 25);
+    path.quadraticBezierTo(0, 0, 25, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }

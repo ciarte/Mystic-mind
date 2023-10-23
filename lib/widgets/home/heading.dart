@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HeadingWidget extends StatelessWidget {
-  final String title;
-  final String subtitle;
+  final String? title;
+  final String? subtitle;
   const HeadingWidget({
     super.key,
-    required this.title,
-    required this.subtitle,
+    this.title,
+    this.subtitle,
   });
 
   @override
@@ -20,20 +20,22 @@ class HeadingWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            title,
-            style: GoogleFonts.macondo(
-              fontSize: 32,
-              fontWeight: FontWeight.w500,
+          if (title != null)
+            Text(
+              title!,
+              style: GoogleFonts.macondo(
+                fontSize: 32,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          Text(
-            subtitle,
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
+          if (subtitle != null)
+            Text(
+              subtitle!,
+              style: GoogleFonts.krub(
+                fontSize: 22,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
         ],
       ),
     );

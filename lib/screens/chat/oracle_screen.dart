@@ -16,12 +16,12 @@ class OracleScreen extends StatelessWidget {
           title: const Text('Oracle'),
         ),
         body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/chat.jpg'),
-                fit: BoxFit.cover,
-                opacity: 0.15),
-          ),
+          // decoration: const BoxDecoration(
+          //   image: DecorationImage(
+          //       image: AssetImage('assets/chat.jpg'),
+          //       fit: BoxFit.cover,
+          //       opacity: 0.15),
+          // ),
           child: const _ChatView(),
         ));
   }

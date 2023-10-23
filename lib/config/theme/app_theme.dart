@@ -41,11 +41,11 @@ class AppTheme {
       ),
 
       //bottomNavigationBar
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          selectedItemColor: Colors.amber[800],
-          // backgroundColor: Colors
-          //     .white, // Personaliza el color de fondo del BottomNavigationBar
-          selectedIconTheme: const IconThemeData(
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Colors.red,
+          // backgroundColor: Color.fromRGBO(167, 12, 53,
+          //     1), // Personaliza el color de fondo del BottomNavigationBar
+          selectedIconTheme: IconThemeData(
             size: 28,
           )),
     );

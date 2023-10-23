@@ -6,7 +6,8 @@ import '../../db/entities/horoscope_entity.dart';
 part 'dayli_horoscope_provider.g.dart';
 
 @riverpod
-Future<Horoscope> dayliHoroscope(DayliHoroscopeRef ref, String sign) async {
-  final horoscope = await HoroscopeRequest.getHoroscope(sign);
+Future<Horoscope> dayliHoroscope(
+    DayliHoroscopeRef ref, String sign, String date) async {
+  final horoscope = await HoroscopeRequest.getHoroscope(sign, date);
   return horoscope;
 }

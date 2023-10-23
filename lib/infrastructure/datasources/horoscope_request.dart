@@ -3,11 +3,11 @@ import 'package:horoscope_app/db/entities/horoscope_entity.dart';
 import 'package:horoscope_app/infrastructure/models/horoscope_model.dart';
 
 class HoroscopeRequest {
-  static Future<Horoscope> getHoroscope(sign) async {
+  static Future<Horoscope> getHoroscope(sign, date) async {
     final dio = Dio();
 
     final response = await dio.get(
-      'https://horoscope-astrology.p.rapidapi.com/horoscope?day=today&sunsign=$sign',
+      'https://horoscope-astrology.p.rapidapi.com/horoscope?day=$date&sunsign=$sign',
       options: Options(
         headers: {
           'X-RapidAPI-Key':

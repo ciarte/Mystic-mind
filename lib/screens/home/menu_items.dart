@@ -1,45 +1,41 @@
 class MenuItem {
   final String title;
-  final String subTitle;
   final String location;
   final String image;
 
   const MenuItem(
-      {required this.title,
-      required this.subTitle,
-      required this.location,
-      required this.image});
+      {required this.title, required this.location, required this.image});
 }
 
 const appMenuItems = <MenuItem>[
   MenuItem(
     title: 'Horoscopo',
-    subTitle: 'Horoscopo del dia',
     location: '/horoscope',
-    image: 'assets/chat.jpg',
-  ),
-  MenuItem(
-    title: 'Compatibilidad',
-    subTitle: 'Match entre signos',
-    location: '/compatibility',
-    image: 'assets/consejos.jpg',
+    image: 'assets/horoscope.png',
   ),
   MenuItem(
     title: 'Oraculo',
-    subTitle: 'Pregunta al Oraculo',
     location: '/oracle',
-    image: 'assets/oraculo.jpg',
+    image: 'assets/oraculow.png',
+  ),
+  MenuItem(
+    title: 'Reflexion del dia',
+    location: '/compatibility',
+    image: 'assets/reflexion.png',
+  ),
+  MenuItem(
+    title: 'Consejo para tu signo',
+    location: '/config',
+    image: 'assets/consejo.png',
   ),
   MenuItem(
     title: 'Tarot',
-    subTitle: 'Consulta el Tarot',
     location: '/tarot',
-    image: 'assets/tarot.jpg',
+    image: 'assets/tarot.png',
   ),
-  // MenuItem(
-  //   title: 'Config',
-  //   subTitle: 'Configuracion',
-  //   location: '/config',
-  //   image: 'assets/oraculo.jpg',
-  // ),
+  MenuItem(
+    title: 'Compatibilidad entre signos',
+    location: '/config',
+    image: 'assets/compatibilidad.png',
+  ),
 ];

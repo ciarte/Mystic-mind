@@ -77,12 +77,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/chat.jpg
-    - assets/consejos.jpg
-    - assets/oraculo.jpg
-    - assets/tarot.jpg
     - assets/google.jpg
     - assets/facebook.png
+    - assets/compatibilidad.png
+    - assets/consejo.png
+    - assets/horoscope.png
+    - assets/reflexion.png
+    - assets/oraculow.png
+    - assets/tarot.png
 
   #   - images/a_dot_ham.jpeg
 
