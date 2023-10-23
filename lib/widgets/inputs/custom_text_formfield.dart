@@ -7,9 +7,13 @@ class CustomTextForm extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.controller,
+    this.hint,
+    this.isNumber,
   });
 
+  final bool? isNumber;
   final String inputName;
+  final String? hint;
   final Function(String)? onChanged;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
@@ -38,7 +42,11 @@ class CustomTextForm extends StatelessWidget {
           validator: validator,
           controller: controller,
           // onSaved: (_input) {},
+          keyboardType:
+              isNumber != null ? TextInputType.number : TextInputType.text,
+
           decoration: InputDecoration(
+            hintText: hint,
             filled: true,
             fillColor: Color.fromRGBO(255, 255, 255, 0.6),
             enabledBorder: border,

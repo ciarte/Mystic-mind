@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,7 +13,12 @@ final authStatusProvider = StreamProvider<User?>((ref) {
   return ref.read(authRepositoryProvider).authStateChange;
 });
 
+final timeProvider =
+    StateProvider<Future<QuerySnapshot<Map<String, dynamic>>>>((ref) {
+  String userUid = FirebaseAuth.instance.currentUser!.uid;
 
+  return FirebaseFirestore.instance.collection('users').where(userUid).get();
+});
 // enum AuthStatus {
 //   notAuthenticated,
 //   authenticating,

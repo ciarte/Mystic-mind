@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +15,13 @@ class UserConfigScreen extends ConsumerWidget {
     final isDarkmode = ref.watch(darkModeProvider);
     final selectedLanguage = ref.watch(currentLanguageProvider);
     final logOut = ref.watch(loginControllerProvider);
+
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController birthdayController = TextEditingController();
+
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+    User? user = FirebaseAuth.instance.currentUser;
+
     return Column(children: [
       const HeadingWidget(
         // title: 'Mystic Mind',
@@ -67,6 +76,34 @@ class UserConfigScreen extends ConsumerWidget {
           ),
         ],
       ),
+      CustomTextForm(inputName: 'Nombre o alias', controller: nameController),
+      const SizedBox(height: 25),
+      CustomTextForm(
+          inputName: 'Fecha de Nacimiento',
+          hint: "DD/MM/YYYY",
+          // isNumber: true,
+          controller: birthdayController),
+      const SizedBox(height: 25),
+      LoginButton(
+          nameButton: 'Continuar',
+          onPressed: () {
+            if (user != null) {
+              print('Usuario actual: ${user.uid}');
+              // Realiza las operaciones que necesites con el usuario actual
+              users.doc(user.uid).set({
+                'signo': birthdayController.text,
+                'nombre': nameController.text,
+              }).then((value) {
+                print("Usuario actualizado correctamente");
+              }).catchError((error) {
+                print("Error al actualizar el usuario: $error");
+              });
+            } else {
+              print('No se encontró ningún usuario autenticado');
+            }
+
+            print(user);
+          }),
       const Spacer(flex: 2),
     ]);
   }

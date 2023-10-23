@@ -83,7 +83,10 @@ class UserDataPageState extends ConsumerState<UserDataPage> {
                         const SizedBox(height: 25),
                         CustomTextForm(
                             inputName: 'Fecha de Nacimiento',
+                            hint: "DD/MM/YYYY",
+                            // isNumber: true,
                             controller: birthdayController),
+                        const SizedBox(height: 25),
                         LoginButton(
                             nameButton: 'Continuar',
                             onPressed: () {
@@ -91,8 +94,8 @@ class UserDataPageState extends ConsumerState<UserDataPage> {
                                 print('Usuario actual: ${user.uid}');
                                 // Realiza las operaciones que necesites con el usuario actual
                                 users.doc(user.uid).set({
-                                  'Edad': birthdayController.text,
-                                  'Nombre': nameController.text,
+                                  'signo': _signo(birthdayController.text),
+                                  'nombre': nameController.text,
                                 }).then((value) {
                                   print("Usuario actualizado correctamente");
                                   context.go('/home');
@@ -111,5 +114,46 @@ class UserDataPageState extends ConsumerState<UserDataPage> {
         ],
       ),
     );
+  }
+}
+
+_signo(String textEditingController) {
+  final dia = int.parse(textEditingController.substring(0, 2));
+  final mes = int.parse(textEditingController.substring(3, 5));
+  if ((dia >= 21 && mes == 3) || (dia <= 20 && mes == 4)) {
+    return 'aries';
+  }
+  if ((dia >= 24 && mes == 9) || (dia <= 23 && mes == 10)) {
+    return 'libra';
+  }
+  if ((dia >= 21 && mes == 4) || (dia <= 21 && mes == 5)) {
+    return 'taurus';
+  }
+  if ((dia >= 24 && mes == 10) || (dia <= 22 && mes == 11)) {
+    return 'scorpio';
+  }
+  if ((dia >= 22 && mes == 5) || (dia <= 21 && mes == 6)) {
+    return 'gemini';
+  }
+  if ((dia >= 23 && mes == 11) || (dia <= 21 && mes == 12)) {
+    return 'sagittarius';
+  }
+  if ((dia >= 21 && mes == 6) || (dia <= 23 && mes == 7)) {
+    return 'cancer';
+  }
+  if ((dia >= 22 && mes == 12) || (dia <= 20 && mes == 1)) {
+    return 'capricorn';
+  }
+  if ((dia >= 24 && mes == 7) || (dia <= 23 && mes == 8)) {
+    return 'leo';
+  }
+  if ((dia >= 21 && mes == 1) || (dia <= 19 && mes == 2)) {
+    return 'aquarius';
+  }
+  if ((dia >= 24 && mes == 8) || (dia <= 23 && mes == 9)) {
+    return 'virgo';
+  }
+  if ((dia >= 20 && mes == 2) || (dia <= 20 && mes == 3)) {
+    return 'pisces';
   }
 }

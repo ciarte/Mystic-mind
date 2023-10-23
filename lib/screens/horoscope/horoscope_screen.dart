@@ -48,15 +48,37 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
               ])),
           child: Column(
             children: [
+              Center(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                textDirection: TextDirection.ltr,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        date = 'today';
+                      });
+                    },
+                    child: const Text(
+                      'Today',
+                      selectionColor: Colors.blue,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        date = 'month';
+                      });
+                    },
+                    child: const Text('Month'),
+                  ),
+                ],
+              )),
               horoscope.when(
                 data: (data) => _HoroscopeText(data: data),
-                loading: () => const CircularProgressIndicator(),
+                loading: () => const Center(child: CircularProgressIndicator()),
                 error: (Object error, StackTrace stackTrace) => Text('$error'),
               ),
-              // TextFormField(
-              //   onTap:,
-
-              // )
             ],
           ),
         ),
@@ -73,43 +95,18 @@ class _HoroscopeText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Center(
-            child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          textDirection: TextDirection.ltr,
-          children: [
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Hoy',
-                selectionColor: Colors.blue,
-              ),
-            ),
-            TextButton(
-              style: ButtonStyle(
-                  backgroundColor: const MaterialStatePropertyAll(Colors.red),
-                  shape: MaterialStatePropertyAll(StarBorder.polygon(
-                      side: BorderSide.none,
-                      sides: 5,
-                      pointRounding: 1,
-                      rotation: 5,
-                      squash: 1))),
-              onPressed: () {},
-              child: const Text('Esta semana'),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text('Este mes'),
-            ),
-          ],
-        )),
-        AnimatedTextKit(
-            isRepeatingAnimation: false,
-            displayFullTextOnTap: true,
-            animatedTexts: [
-              TypewriterAnimatedText((data.horoscopeData),
-                  speed: const Duration(milliseconds: 60))
-            ]),
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Center(
+            child: AnimatedTextKit(
+                isRepeatingAnimation: false,
+                displayFullTextOnTap: true,
+                animatedTexts: [
+                  TypewriterAnimatedText((data.horoscopeData),
+                      speed: const Duration(milliseconds: 60))
+                ]),
+          ),
+        ),
       ],
     );
   }

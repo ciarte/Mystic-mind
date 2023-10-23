@@ -118,13 +118,16 @@ class RegisterPageState extends ConsumerState<RegisterPage> {
                                   passwordController2.text) {
                                 print(
                                     'la Contraseña no coincide ${passwordController.text} ${passwordController2.text}');
-                              } else {
+                              }
+                              try {
                                 ref
                                     .read(loginControllerProvider.notifier)
                                     .create((emailController.text).trim(),
                                         passwordController.text);
 
-                                context.go('/userRegister');
+                                context.go('/home');
+                              } catch (e) {
+                                print(e);
                               }
                             }),
                       ]))),
