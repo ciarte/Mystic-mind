@@ -28,10 +28,11 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
           title: Text(
             'Horoscopo',
             style: GoogleFonts.macondo(
-              fontSize: 28,
+              fontSize: 30,
               fontWeight: FontWeight.w400,
-              color: !isDarkmode ? const Color(0xff000000) : Color(0xFFEEEBEB),
-              height: 31 / 24,
+              color: !isDarkmode
+                  ? const Color(0xff000000)
+                  : const Color(0xFFEEEBEB),
             ),
           ),
         ),
@@ -75,6 +76,17 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                       ])),
           child: Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SizedBox(
+                    height: 150,
+                    width: MediaQuery.of(context).size.width,
+                    child: CustomPaint(
+                        painter: _CustomSign(isDark: isDarkmode),
+                        child: isDarkmode
+                            ? Image.asset('assets/banner/${mySign}_dark.png')
+                            : Image.asset('assets/banner/$mySign.png'))),
+              ),
               Center(
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -138,10 +150,18 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                   ),
                 ],
               )),
-              horoscope.when(
-                data: (data) => _HoroscopeText(data: data),
-                loading: () => const Center(child: CircularProgressIndicator()),
-                error: (Object error, StackTrace stackTrace) => Text('$error'),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Container(
+                    child: horoscope.when(
+                      data: (data) => _HoroscopeText(data: data),
+                      loading: () =>
+                          const Center(child: CircularProgressIndicator()),
+                      error: (Object error, StackTrace stackTrace) =>
+                          Text('$error'),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -165,7 +185,9 @@ class _HoroscopeText extends StatelessWidget {
                 displayFullTextOnTap: true,
                 animatedTexts: [
                   TypewriterAnimatedText((data.horoscopeData),
-                      speed: const Duration(milliseconds: 60))
+                      speed: const Duration(milliseconds: 60),
+                      textStyle: const TextStyle(
+                          fontWeight: FontWeight.w500, fontSize: 18))
                 ]),
           ),
         ),
@@ -174,30 +196,38 @@ class _HoroscopeText extends StatelessWidget {
   }
 }
 
-// class _CustomNavigtor extends CustomPainter {
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     final paint = Paint();
+class _CustomSign extends CustomPainter {
+  bool isDark;
+  _CustomSign({required this.isDark});
 
-//     paint.color = const Color.fromRGBO(167, 12, 53, 1);
-//     paint.style = PaintingStyle.fill;
-//     paint.strokeWidth = 5;
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
 
-//     Path path = Path();
+    paint.color = isDark ? const Color.fromRGBO(14, 11, 42, 1) : Colors.white60;
 
-//     path.moveTo(25, 0);
-//     path.lineTo(size.width - 25, 0);
-//     path.quadraticBezierTo(size.width, 0, size.width, 25);
-//     path.lineTo(size.width, size.height);
-//     path.lineTo(0, size.height);
-//     path.lineTo(0, 25);
-//     path.quadraticBezierTo(0, 0, 25, 0);
+    paint.style = PaintingStyle.fill;
+    paint.strokeWidth = 5;
 
-//     canvas.drawPath(path, paint);
-//   }
+    Path path = Path();
 
-//   @override
-//   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-//     return true;
-//   }
-// }
+    path.moveTo(0, 0);
+    path.lineTo(size.width, 0);
+    path.quadraticBezierTo(
+        size.width, size.height * 0.5, size.width * 0.85, size.height * 0.5);
+
+    path.quadraticBezierTo(
+        size.width * 0.8, size.height * 0.95, size.width * 0.5, size.height);
+    path.quadraticBezierTo(size.width * 0.2, size.height * 0.95,
+        size.width * 0.15, size.height * 0.5);
+
+    path.quadraticBezierTo(0, size.height * 0.5, 0, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
