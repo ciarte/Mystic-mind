@@ -63,8 +63,8 @@ class _CustomListTile extends StatelessWidget {
                 child: Image.asset(
                   menuItem.image,
                   fit: BoxFit.cover,
-                  height: 140,
-                  width: 140,
+                  height: 120,
+                  width: 120,
                 ),
               ),
             )),
@@ -73,7 +73,6 @@ class _CustomListTile extends StatelessWidget {
           style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: Color(0xff000000),
             height: 34 / 14,
           ),
           textAlign: TextAlign.center,

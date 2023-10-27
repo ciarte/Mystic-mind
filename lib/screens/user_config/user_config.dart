@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,8 +20,8 @@ class UserConfigScreen extends ConsumerWidget {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController birthdayController = TextEditingController();
 
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
     User? user = FirebaseAuth.instance.currentUser;
+    DatabaseReference users = FirebaseDatabase.instance.ref(user!.uid);
 
     return Column(children: [
       const HeadingWidget(
@@ -89,8 +90,9 @@ class UserConfigScreen extends ConsumerWidget {
           onPressed: () {
             if (user != null) {
               print('Usuario actual: ${user.uid}');
+              print('Usuario actual: $users');
               // Realiza las operaciones que necesites con el usuario actual
-              users.doc(user.uid).set({
+              users.update({
                 'signo': birthdayController.text,
                 'nombre': nameController.text,
               }).then((value) {

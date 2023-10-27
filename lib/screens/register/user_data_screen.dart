@@ -30,11 +30,11 @@ class UserDataPage extends ConsumerStatefulWidget {
 
 class UserDataPageState extends ConsumerState<UserDataPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  FirebaseFirestore users = FirebaseFirestore.instance;
+  User? user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
-    User? user = FirebaseAuth.instance.currentUser;
     // final height = MediaQuery.of(context).size.height;
 
     ref.listen<LoginState>(loginControllerProvider, ((previous, state) {
@@ -90,14 +90,20 @@ class UserDataPageState extends ConsumerState<UserDataPage> {
                         LoginButton(
                             nameButton: 'Continuar',
                             onPressed: () {
+                              print('Usuario actual: $user');
                               if (user != null) {
-                                print('Usuario actual: ${user.uid}');
-                                // Realiza las operaciones que necesites con el usuario actual
-                                users.doc(user.uid).set({
-                                  'signo': _signo(birthdayController.text),
+                                final userNew = <String, dynamic>{
                                   'nombre': nameController.text,
-                                }).then((value) {
-                                  print("Usuario actualizado correctamente");
+                                  'signo': _signo(birthdayController.text),
+                                };
+
+                                // Realiza las operaciones que necesites con el usuario actual
+                                users
+                                    .collection('users')
+                                    .add(userNew)
+                                    .then((DocumentReference doc) {
+                                  print(
+                                      'DocumentSnapshot added with ID: ${doc.id}');
                                   context.go('/home');
                                 }).catchError((error) {
                                   print(

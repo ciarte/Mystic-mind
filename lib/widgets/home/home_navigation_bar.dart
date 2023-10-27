@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:horoscope_app/providers/providers.dart';
 import 'package:horoscope_app/screens/screens.dart';
 import 'package:horoscope_app/widgets/widgets.dart';
 
@@ -11,16 +13,16 @@ class HomeNavigationBar extends StatelessWidget {
   }
 }
 
-class BottomNavigationBarExample extends StatefulWidget {
+class BottomNavigationBarExample extends ConsumerStatefulWidget {
   const BottomNavigationBarExample({super.key});
 
   @override
-  State<BottomNavigationBarExample> createState() =>
-      _BottomNavigationBarExampleState();
+  BottomNavigationBarExampleState createState() =>
+      BottomNavigationBarExampleState();
 }
 
-class _BottomNavigationBarExampleState
-    extends State<BottomNavigationBarExample> {
+class BottomNavigationBarExampleState
+    extends ConsumerState<BottomNavigationBarExample> {
   int _selectedIndex = 0;
 
   // List<Color> backgroundColorList = [Colors.red, Colors.pink];
@@ -41,23 +43,48 @@ class _BottomNavigationBarExampleState
 
   @override
   Widget build(BuildContext context) {
+    final isDarkmode = ref.watch(darkModeProvider);
     return SafeArea(
       child: Scaffold(
         body: Stack(children: [
           Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    tileMode: TileMode.decal,
-                    stops: [
-                  0.1,
-                  0.6
-                ],
-                    colors: [
-                  Color.fromRGBO(254, 211, 170, 1),
-                  Color.fromRGBO(191, 141, 187, 1),
-                ])),
+            decoration: !isDarkmode
+                ? const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/fondo.png'),
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.linearToSrgbGamma(),
+                        opacity: 0.5),
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        tileMode: TileMode.decal,
+                        stops: [
+                          0.1,
+                          0.6
+                        ],
+                        colors: [
+                          Color.fromRGBO(254, 211, 170, 1),
+                          Color.fromRGBO(191, 141, 187, 1),
+                        ]))
+                : const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/fondo.png'),
+                        fit: BoxFit.cover,
+                        colorFilter: ColorFilter.linearToSrgbGamma(),
+                        opacity: 0.5),
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        tileMode: TileMode.decal,
+                        stops: [
+                          0.1,
+                          0.6
+                        ],
+                        colors: [
+                          Color.fromRGBO(155, 85, 148, 1),
+                          Color.fromRGBO(23, 5, 66, 1),
+                        ])),
             child: _widgetOptions.elementAt(_selectedIndex),
           ),
           Positioned(
