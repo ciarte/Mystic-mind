@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-const Color _customColor = Color.fromARGB(255, 255, 255, 255);
+const Color _customColor = Color.fromARGB(167, 255, 255, 255);
 
 const List<Color> _colorTheme = [
   _customColor,
@@ -22,7 +23,7 @@ class AppTheme {
   ThemeData theme() {
     return ThemeData(
       useMaterial3: true,
-      colorSchemeSeed: _colorTheme[selectedColor],
+      colorSchemeSeed: const Color.fromRGBO(167, 12, 53, 1),
       brightness: isDarkmode ? Brightness.dark : Brightness.light,
 
       //Scaffold
@@ -31,12 +32,18 @@ class AppTheme {
       //AppBar
       appBarTheme: AppBarTheme(
         centerTitle: true,
-        backgroundColor: isDarkmode ? null : _colorTheme[selectedColor],
-        titleTextStyle: const TextStyle(
-          color: Colors.white,
-          fontSize: 20,
-          letterSpacing: 1,
-          wordSpacing: 5,
+        backgroundColor: !isDarkmode
+            ? const Color.fromRGBO(254, 211, 170, 1)
+            : const Color.fromRGBO(23, 5, 66, 1),
+        titleTextStyle: GoogleFonts.macondo(
+          textStyle: TextStyle(
+            color:
+                !isDarkmode ? const Color(0xff000000) : const Color(0xFFEEEBEB),
+            fontSize: 30,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 1,
+            wordSpacing: 5,
+          ),
         ),
       ),
 

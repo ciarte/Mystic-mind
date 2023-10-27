@@ -22,18 +22,8 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
     final isDarkmode = ref.watch(darkModeProvider);
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: !isDarkmode
-              ? const Color.fromRGBO(254, 211, 170, 1)
-              : const Color.fromRGBO(23, 5, 66, 1),
-          title: Text(
+          title: const Text(
             'Horoscopo',
-            style: GoogleFonts.macondo(
-              fontSize: 30,
-              fontWeight: FontWeight.w400,
-              color: !isDarkmode
-                  ? const Color(0xff000000)
-                  : const Color(0xFFEEEBEB),
-            ),
           ),
         ),
         body: Container(

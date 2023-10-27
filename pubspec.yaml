@@ -86,7 +86,9 @@ flutter:
     - assets/oraculow.png
     - assets/tarot.png
     - assets/fondo.png
+    - assets/chat_pattern.png
     - assets/banner/
+    - assets/tarot_cards/
 
   #   - images/a_dot_ham.jpeg
 

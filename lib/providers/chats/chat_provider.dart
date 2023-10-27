@@ -8,7 +8,8 @@ class ChatOracle extends ChangeNotifier {
   List<Message> messageList = [
     Message(
       fromWho: FromWho.oracle,
-      text: 'Bienvenido de Nuevo',
+      text:
+          '"Escribe aquí tu consulta, recuerda terminar tu pregunta con “?” Este oráculo solo da respuestas de “sí” y “no”"',
       //TODO agregar imagen
     ),
   ];
@@ -20,7 +21,6 @@ class ChatOracle extends ChangeNotifier {
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     );
-    print('PIXEL: ${chatScrollController.position.pixels}');
   }
 
   Future<void> oracleReply() async {

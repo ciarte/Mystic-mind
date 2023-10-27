@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,26 +20,122 @@ class TarotScreenState extends ConsumerState<TarotScreen> {
   Widget build(BuildContext context) {
     final tarot = ref.watch(tarotCardsProvider);
     final tarots = ref.watch(tarotThreeCardsProvider);
+    final isDarkmode = ref.watch(darkModeProvider);
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text('tu tarot'),
+          title: const Text('Tarot'),
         ),
-        body: Column(
+        body: Stack(
           children: [
-            tarots.when(
-              data: (data) => _TarotText(data: data),
-              loading: () => const CircularProgressIndicator(),
-              error: (Object error, StackTrace stackTrace) => Text('$error'),
+            Container(
+              decoration: !isDarkmode
+                  ? const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/fondo.png'),
+                          fit: BoxFit.cover,
+                          colorFilter: ColorFilter.linearToSrgbGamma(),
+                          opacity: 0.5),
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          tileMode: TileMode.decal,
+                          stops: [
+                            0.1,
+                            0.6
+                          ],
+                          colors: [
+                            Color.fromRGBO(254, 211, 170, 1),
+                            Color.fromRGBO(191, 141, 187, 1),
+                          ]))
+                  : const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('assets/fondo.png'),
+                          fit: BoxFit.cover,
+                          colorFilter: ColorFilter.linearToSrgbGamma(),
+                          opacity: 0.5),
+                      gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          tileMode: TileMode.decal,
+                          stops: [
+                            0.1,
+                            0.6
+                          ],
+                          colors: [
+                            Color.fromRGBO(155, 85, 148, 1),
+                            Color.fromRGBO(23, 5, 66, 1),
+                          ])),
             ),
-            // TextFormField(
-            //   onTap:,
-
-            // )
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                height: 250,
+                width: 170,
+                decoration: BoxDecoration(
+                    color: Colors.white24,
+                    border: Border.all(
+                      color: const Color.fromRGBO(
+                        168,
+                        168,
+                        168,
+                        1,
+                      ),
+                      width: 4,
+                    ),
+                    borderRadius: BorderRadius.circular(20)),
+                child: Center(
+                  child: AnimatedTextKit(
+                      stopPauseOnTap: true,
+                      isRepeatingAnimation: true,
+                      displayFullTextOnTap: true,
+                      repeatForever: true,
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                            ('Elije una carta\n para obtener una\n lectura'),
+                            speed: const Duration(milliseconds: 60),
+                            cursor: '.'
+                            // textStyle: const TextStyle(
+                            //     fontWeight: FontWeight.w500, fontSize: 18)
+                            )
+                      ]),
+                ),
+              ),
+            ),
+            Positioned(
+              height: 250,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Stack(
+                alignment: Alignment.topCenter, // Alineación de las cartas
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 50, bottom: 0),
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(150),
+                        topRight: Radius.circular(150),
+                      ),
+                    ),
+                    height: 300,
+                  ),
+                  Container(
+                    height: 300,
+                    child: tarots.when(
+                      data: (data) => _TarotText(data: data),
+                      loading: () =>
+                          const Center(child: CircularProgressIndicator()),
+                      error: (Object error, StackTrace stackTrace) =>
+                          Text('$error'),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
-        ),
-        floatingActionButton:
-            FloatingActionButton(onPressed: () => context.push('/oracle')));
+        ));
   }
 }
 
@@ -49,23 +146,31 @@ class _TarotText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 210,
-      width: double.infinity,
-      child: Swiper(
-          scale: 0.85,
-          loop: false,
-          viewportFraction: 0.8,
-          // pagination: const SwiperPagination(
-          //     margin: EdgeInsets.only(top: 0),
-          //     builder: DotSwiperPaginationBuilder(
-          //         // activeColor: colors.primary,
-          //         // color: colors.secondary,
-          //         space: 2.0)),
-          itemCount: data.length,
-          itemBuilder: (context, index) => _Slide(
-                tarotCard: data[index],
-              )),
-    );
+        height: 250,
+        width: double.infinity,
+        child: Swiper(
+            loop: true,
+            layout: SwiperLayout.CUSTOM,
+            customLayoutOption:
+                CustomLayoutOption(startIndex: -1, stateCount: 3)
+                  ..addRotate([-0.3, 0.0, 0.3])
+                  ..addTranslate([
+                    const Offset(-180.0, -15.0),
+                    const Offset(0.0, 0.0),
+                    const Offset(180.0, -15.0)
+                  ]),
+            itemWidth: 200.0,
+            itemHeight: 250.0,
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                  onTap: () {
+                    print(data[index].name);
+                  },
+                  child: Image.asset(
+                    'assets/tarot_cards/light.png',
+                  ));
+            }));
   }
 }
 
@@ -76,32 +181,18 @@ class _Slide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final decoration = BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black87,
-            blurRadius: 7,
-            offset: Offset(0, 10),
-          )
-        ]);
+      borderRadius: BorderRadius.circular(10),
+    );
 
     return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
+      padding: const EdgeInsets.only(bottom: 10),
       child: DecoratedBox(
           decoration: decoration,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Text(tarotCard.name),
-            // Image.network(tarotCard.image, fit: BoxFit.cover,
-            //     loadingBuilder: (context, child, loadingProgress) {
-            //   if (loadingProgress != null) {
-            //     return const DecoratedBox(
-            //       decoration: BoxDecoration(color: Colors.black12),
-            //     );
-            //   }
-            //   return FadeIn(child: child);
-            // })
-          )),
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                'assets/tarot_cards/light.png',
+              ))),
     );
   }
 }

@@ -35,7 +35,7 @@ const appMenuItems = <MenuItem>[
   ),
   MenuItem(
     title: 'Compatibilidad entre signos',
-    location: '/config',
+    location: '/compatibility',
     image: 'assets/compatibilidad.png',
   ),
 ];

@@ -18,13 +18,12 @@ class OracleMessageBubble extends StatelessWidget {
           ),
           Container(
             decoration: BoxDecoration(
-                color: color.secondary,
-                borderRadius: BorderRadius.circular(15)),
+                color: Colors.white, borderRadius: BorderRadius.circular(15)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Text(message.text,
                   style: const TextStyle(
-                    color: Colors.white,
+                    // color: Colors.white,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   )),
@@ -51,23 +50,33 @@ class _ImageBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return ClipRRect(
-        borderRadius: BorderRadius.circular(15),
-        child: Image.network(
-          imageUrl,
-          width: size.width * 0.7,
-          height: 250,
-          fit: BoxFit.cover,
-          loadingBuilder: (context, child, loadingProgress) {
-            if (loadingProgress == null) return child;
-            return Container(
-              alignment: AlignmentDirectional.bottomCenter,
-              width: size.width * 0.7,
-              height: 250,
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: const Text('Leyendo los astros...'),
-            );
-          },
-        ));
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.white,
+          width: 6, // Ancho del borde blanco
+        ),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.network(
+            imageUrl,
+            width: size.width * 0.7,
+            height: 250,
+            fit: BoxFit.cover,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Container(
+                alignment: AlignmentDirectional.bottomCenter,
+                width: size.width * 0.7,
+                height: 250,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: const Text('Leyendo los astros...'),
+              );
+            },
+          )),
+    );
   }
 }
