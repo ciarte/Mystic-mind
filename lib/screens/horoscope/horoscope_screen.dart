@@ -18,7 +18,10 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final horoscope = ref.watch(dayliHoroscopeProvider(mySign, date));
+    final horoscope = (date == 'today')
+        ? ref.watch(dayliHoroscopeProvider(mySign, date))
+        : ref.watch(monthlyHoroscopeProvider(mySign, date));
+    // final horoscope1 = ref.watch(monthlyHoroscopeProvider(mySign, date));
     final isDarkmode = ref.watch(darkModeProvider);
     return Scaffold(
         appBar: AppBar(
@@ -128,7 +131,7 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                             )),
                     onPressed: () {
                       setState(() {
-                        date = 'month';
+                        date = 'monthly';
                         isSelected = false;
                       });
                     },

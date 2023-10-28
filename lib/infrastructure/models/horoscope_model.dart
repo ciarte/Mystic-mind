@@ -12,11 +12,11 @@ class HoroscopeModel {
   factory HoroscopeModel.fromJson(Map<String, dynamic> json) => HoroscopeModel(
         // date: json["date"],
         // json["month"],
-        horoscope: json["horoscope"],
+        horoscope: json["horoscope_data"],
       );
 
   Map<String, dynamic> toJson() => {
-        "horoscope": horoscope,
+        "horoscope_data": horoscope,
       };
 
   Horoscope toHoroscopeEntity() => Horoscope(horoscopeData: horoscope);
