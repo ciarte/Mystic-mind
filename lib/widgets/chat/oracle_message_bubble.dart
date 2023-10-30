@@ -67,8 +67,9 @@ class _ImageBubble extends StatelessWidget {
             fit: BoxFit.cover,
             loadingBuilder: (context, child, loadingProgress) {
               if (loadingProgress == null) return child;
+
               return Container(
-                alignment: AlignmentDirectional.bottomCenter,
+                alignment: AlignmentDirectional.center,
                 width: size.width * 0.7,
                 height: 250,
                 padding:

@@ -1,7 +1,5 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:horoscope_app/db/entities/entities.dart';
 import 'package:horoscope_app/providers/chats/chats_provider.dart';
 import 'package:horoscope_app/providers/providers.dart';
@@ -28,7 +26,7 @@ class _ChatView extends ConsumerWidget {
           backgroundColor: !isDarkmode
               ? const Color.fromRGBO(254, 211, 170, 1)
               : const Color.fromRGBO(23, 5, 66, 1),
-          title: Text(
+          title: const Text(
             'Oraculo',
           ),
         ),
