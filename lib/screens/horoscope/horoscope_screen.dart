@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/providers/providers.dart';
 
 class HoroscopeScreen extends ConsumerStatefulWidget {
@@ -15,18 +16,20 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
   String mySign = 'aries';
   String date = 'today';
   bool isSelected = true;
+  final language = S.current.bSpanish;
 
   @override
   Widget build(BuildContext context) {
+    final texts = S.of(context);
     final horoscope = (date == 'today')
-        ? ref.watch(dayliHoroscopeProvider(mySign, date))
-        : ref.watch(monthlyHoroscopeProvider(mySign, date));
+        ? ref.watch(dayliHoroscopeProvider(mySign, date, language))
+        : ref.watch(monthlyHoroscopeProvider(mySign, date, language));
     // final horoscope1 = ref.watch(monthlyHoroscopeProvider(mySign, date));
     final isDarkmode = ref.watch(darkModeProvider);
     return Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Horoscopo',
+          title: Text(
+            texts.tHoroscope,
           ),
         ),
         body: Container(
@@ -107,8 +110,8 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                         isSelected = true;
                       });
                     },
-                    child: const Text(
-                      'Today',
+                    child: Text(
+                      texts.mToday,
 
                       // selectionColor: Colors.blue,
                     ),
@@ -135,8 +138,8 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                         isSelected = false;
                       });
                     },
-                    child: const Text(
-                      'month',
+                    child: Text(
+                      texts.mMonth,
 
                       // selectionColor: Colors.blue,
                     ),

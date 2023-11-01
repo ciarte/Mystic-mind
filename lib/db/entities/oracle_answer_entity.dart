@@ -24,8 +24,6 @@ class OracleAnswerModel {
         "image": image,
       };
 
-  Message toMessageEntity() => Message(
-      text: answer == 'yes' ? 'Si' : 'No',
-      fromWho: FromWho.oracle,
-      imageUrl: image);
+  Message toMessageEntity() =>
+      Message(text: answer, fromWho: FromWho.oracle, imageUrl: image);
 }

@@ -6,7 +6,7 @@ part of 'animated_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$animatedStartHash() => r'f17881862e95450211bb3130da52c70de145d1e8';
+String _$animatedStartHash() => r'6c4ecdcf566a206cff672c59fa34006da1447502';
 
 /// See also [AnimatedStart].
 @ProviderFor(AnimatedStart)

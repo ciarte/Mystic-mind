@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:horoscope_app/generated/l10n.dart';
+
 import 'package:horoscope_app/providers/providers.dart';
 import 'package:horoscope_app/screens/vm/login_controller.dart';
 import 'package:horoscope_app/widgets/widgets.dart';
@@ -15,8 +15,8 @@ class UserConfigScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isDarkmode = ref.watch(darkModeProvider);
     final selectedLanguage = ref.watch(currentLanguageProvider);
-    final logOut = ref.watch(loginControllerProvider);
-
+    // final logOut = ref.watch(loginControllerProvider);
+    final texts = S.of(context);
     final TextEditingController nameController = TextEditingController();
     final TextEditingController birthdayController = TextEditingController();
 
@@ -24,9 +24,8 @@ class UserConfigScreen extends ConsumerWidget {
     DatabaseReference users = FirebaseDatabase.instance.ref(user!.uid);
 
     return Column(children: [
-      const HeadingWidget(
-        // title: 'Mystic Mind',
-        subtitle: 'Configuracion',
+      HeadingWidget(
+        subtitle: texts.tConfig,
       ),
       const Spacer(flex: 1),
       IconButton(
@@ -45,9 +44,9 @@ class UserConfigScreen extends ConsumerWidget {
               onPressed: () {
                 ref.read(loginControllerProvider.notifier).signOut();
               },
-              child: const Text(
-                'logOut',
-                style: TextStyle(
+              child: Text(
+                texts.bLogout,
+                style: const TextStyle(
                   color: Color.fromRGBO(167, 12, 53, 1),
                   fontWeight: FontWeight.w600,
                 ),
@@ -55,12 +54,12 @@ class UserConfigScreen extends ConsumerWidget {
         ],
       ),
       ExpansionTile(
-        title: const Text('Idioma'),
+        title: Text(texts.mLanguage),
         subtitle: Text(getSubtitle(selectedLanguage)),
         initiallyExpanded: false,
         children: [
           RadioListTile(
-            title: const Text('English'),
+            title: Text(texts.bEnglish),
             value: Language.en,
             groupValue: selectedLanguage,
             onChanged: (value) {
@@ -68,7 +67,7 @@ class UserConfigScreen extends ConsumerWidget {
             },
           ),
           RadioListTile(
-            title: const Text('Español'),
+            title: Text(texts.bSpanish),
             value: Language.es,
             groupValue: selectedLanguage,
             onChanged: (value) {
@@ -77,16 +76,16 @@ class UserConfigScreen extends ConsumerWidget {
           ),
         ],
       ),
-      CustomTextForm(inputName: 'Nombre o alias', controller: nameController),
+      CustomTextForm(inputName: texts.bName, controller: nameController),
       const SizedBox(height: 25),
       CustomTextForm(
-          inputName: 'Fecha de Nacimiento',
-          hint: "DD/MM/YYYY",
+          inputName: texts.bBirthday,
+          // hint: ,
           // isNumber: true,
           controller: birthdayController),
       const SizedBox(height: 25),
       LoginButton(
-          nameButton: 'Continuar',
+          nameButton: texts.bContinue,
           onPressed: () {
             if (user != null) {
               print('Usuario actual: ${user.uid}');
@@ -117,9 +116,8 @@ String getSubtitle(Language selectedLanguage) {
       return 'English';
     case Language.es:
       return 'Español';
-    case Language.fr:
-      return 'Français';
+
     default:
-      return '';
+      return 'English';
   }
 }

@@ -6,7 +6,7 @@ part of 'monthly_horoscope_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$monthlyHoroscopeHash() => r'ad98c41654f7f31281979b6ff0bf5afa00512763';
+String _$monthlyHoroscopeHash() => r'22e60fc30cdd861eafa4bf3b83767b21826da53c';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -42,10 +42,12 @@ class MonthlyHoroscopeFamily extends Family<AsyncValue<Horoscope>> {
   MonthlyHoroscopeProvider call(
     String sign,
     String date,
+    String language,
   ) {
     return MonthlyHoroscopeProvider(
       sign,
       date,
+      language,
     );
   }
 
@@ -56,6 +58,7 @@ class MonthlyHoroscopeFamily extends Family<AsyncValue<Horoscope>> {
     return call(
       provider.sign,
       provider.date,
+      provider.language,
     );
   }
 
@@ -80,11 +83,13 @@ class MonthlyHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
   MonthlyHoroscopeProvider(
     String sign,
     String date,
+    String language,
   ) : this._internal(
           (ref) => monthlyHoroscope(
             ref as MonthlyHoroscopeRef,
             sign,
             date,
+            language,
           ),
           from: monthlyHoroscopeProvider,
           name: r'monthlyHoroscopeProvider',
@@ -97,6 +102,7 @@ class MonthlyHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
               MonthlyHoroscopeFamily._allTransitiveDependencies,
           sign: sign,
           date: date,
+          language: language,
         );
 
   MonthlyHoroscopeProvider._internal(
@@ -108,10 +114,12 @@ class MonthlyHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
     required super.from,
     required this.sign,
     required this.date,
+    required this.language,
   }) : super.internal();
 
   final String sign;
   final String date;
+  final String language;
 
   @override
   Override overrideWith(
@@ -128,6 +136,7 @@ class MonthlyHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
         debugGetCreateSourceHash: null,
         sign: sign,
         date: date,
+        language: language,
       ),
     );
   }
@@ -141,7 +150,8 @@ class MonthlyHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
   bool operator ==(Object other) {
     return other is MonthlyHoroscopeProvider &&
         other.sign == sign &&
-        other.date == date;
+        other.date == date &&
+        other.language == language;
   }
 
   @override
@@ -149,6 +159,7 @@ class MonthlyHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, sign.hashCode);
     hash = _SystemHash.combine(hash, date.hashCode);
+    hash = _SystemHash.combine(hash, language.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -160,6 +171,9 @@ mixin MonthlyHoroscopeRef on AutoDisposeFutureProviderRef<Horoscope> {
 
   /// The parameter `date` of this provider.
   String get date;
+
+  /// The parameter `language` of this provider.
+  String get language;
 }
 
 class _MonthlyHoroscopeProviderElement
@@ -171,6 +185,8 @@ class _MonthlyHoroscopeProviderElement
   String get sign => (origin as MonthlyHoroscopeProvider).sign;
   @override
   String get date => (origin as MonthlyHoroscopeProvider).date;
+  @override
+  String get language => (origin as MonthlyHoroscopeProvider).language;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

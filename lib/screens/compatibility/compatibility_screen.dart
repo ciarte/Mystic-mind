@@ -1,14 +1,16 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:horoscope_app/generated/l10n.dart';
 
 class CompatibilityScreen extends StatelessWidget {
   const CompatibilityScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final texts = S.of(context);
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Compatibilidad entre signos'),
+          title: Text(texts.tCompatibility),
         ),
         body: Column(children: [
           SizedBox(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/screens/home/menu_items.dart';
 import 'package:horoscope_app/widgets/widgets.dart';
 
@@ -9,16 +10,17 @@ class MenuView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final texts = S.of(context);
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 25, bottom: 10),
+        Padding(
+          padding: const EdgeInsets.only(top: 25, bottom: 10),
           child: HeadingWidget(
             title: 'Mystic Mind',
-            subtitle: 'te da la bienvenida',
+            subtitle: texts.tTitle,
           ),
         ),
-        Text("¿Qué deseas consultar hoy?",
+        Text(texts.tSubTitle,
             style: GoogleFonts.krub(
               fontSize: 16,
               fontWeight: FontWeight.w500,
@@ -32,9 +34,9 @@ class MenuView extends StatelessWidget {
               crossAxisSpacing: 15, // Espacio entre columnas
               mainAxisSpacing: 6, // Espacio entre filas
             ),
-            itemCount: appMenuItems.length,
+            itemCount: getAppMenuItems(context).length,
             itemBuilder: (BuildContext context, int index) {
-              final menuItem = appMenuItems[index];
+              final menuItem = getAppMenuItems(context)[index];
               return _CustomListTile(
                 menuItem: menuItem,
               );

@@ -6,7 +6,7 @@ part of 'dayli_horoscope_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dayliHoroscopeHash() => r'98471c860f367372dc2dcce4bc214e123e38207e';
+String _$dayliHoroscopeHash() => r'7451f76916a985d7eba6b23eda9ece78227b7369';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -42,10 +42,12 @@ class DayliHoroscopeFamily extends Family<AsyncValue<Horoscope>> {
   DayliHoroscopeProvider call(
     String sign,
     String date,
+    String language,
   ) {
     return DayliHoroscopeProvider(
       sign,
       date,
+      language,
     );
   }
 
@@ -56,6 +58,7 @@ class DayliHoroscopeFamily extends Family<AsyncValue<Horoscope>> {
     return call(
       provider.sign,
       provider.date,
+      provider.language,
     );
   }
 
@@ -80,11 +83,13 @@ class DayliHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
   DayliHoroscopeProvider(
     String sign,
     String date,
+    String language,
   ) : this._internal(
           (ref) => dayliHoroscope(
             ref as DayliHoroscopeRef,
             sign,
             date,
+            language,
           ),
           from: dayliHoroscopeProvider,
           name: r'dayliHoroscopeProvider',
@@ -97,6 +102,7 @@ class DayliHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
               DayliHoroscopeFamily._allTransitiveDependencies,
           sign: sign,
           date: date,
+          language: language,
         );
 
   DayliHoroscopeProvider._internal(
@@ -108,10 +114,12 @@ class DayliHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
     required super.from,
     required this.sign,
     required this.date,
+    required this.language,
   }) : super.internal();
 
   final String sign;
   final String date;
+  final String language;
 
   @override
   Override overrideWith(
@@ -128,6 +136,7 @@ class DayliHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
         debugGetCreateSourceHash: null,
         sign: sign,
         date: date,
+        language: language,
       ),
     );
   }
@@ -141,7 +150,8 @@ class DayliHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
   bool operator ==(Object other) {
     return other is DayliHoroscopeProvider &&
         other.sign == sign &&
-        other.date == date;
+        other.date == date &&
+        other.language == language;
   }
 
   @override
@@ -149,6 +159,7 @@ class DayliHoroscopeProvider extends AutoDisposeFutureProvider<Horoscope> {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, sign.hashCode);
     hash = _SystemHash.combine(hash, date.hashCode);
+    hash = _SystemHash.combine(hash, language.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -160,6 +171,9 @@ mixin DayliHoroscopeRef on AutoDisposeFutureProviderRef<Horoscope> {
 
   /// The parameter `date` of this provider.
   String get date;
+
+  /// The parameter `language` of this provider.
+  String get language;
 }
 
 class _DayliHoroscopeProviderElement
@@ -170,6 +184,8 @@ class _DayliHoroscopeProviderElement
   String get sign => (origin as DayliHoroscopeProvider).sign;
   @override
   String get date => (origin as DayliHoroscopeProvider).date;
+  @override
+  String get language => (origin as DayliHoroscopeProvider).language;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

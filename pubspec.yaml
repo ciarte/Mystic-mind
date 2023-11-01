@@ -41,7 +41,6 @@ dependencies:
   dio: ^5.3.3
   animated_text_kit: ^4.2.2
   animate_do: ^3.0.2
-  # translator: ^0.1.7
   firebase_core: ^2.19.0
   cloud_firestore: ^4.11.0
   firebase_auth: ^4.11.1
@@ -50,6 +49,8 @@ dependencies:
   firebase_analytics: ^10.5.1
   google_fonts: ^6.1.0
   equatable: ^2.0.5
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -67,7 +68,6 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter packages.
 flutter:
   # The following line ensures that the Material Icons font is
@@ -89,15 +89,11 @@ flutter:
     - assets/chat_pattern.png
     - assets/banner/
     - assets/tarot_cards/
-
   #   - images/a_dot_ham.jpeg
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -117,3 +113,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true

@@ -6,7 +6,7 @@ part of 'language_config_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$currentLanguageHash() => r'4588583eb82f64edff9b0bfb51fcb8f31803aadc';
+String _$currentLanguageHash() => r'293d437adb8138e337f6dac1dc614dd7c917bcfc';
 
 /// See also [CurrentLanguage].
 @ProviderFor(CurrentLanguage)

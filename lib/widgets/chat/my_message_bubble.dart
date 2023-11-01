@@ -30,33 +30,33 @@ class MyMessageBubble extends StatelessWidget {
   }
 }
 
-class _CustomChat extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint();
+// class _CustomChat extends CustomPainter {
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     final paint = Paint();
 
-    paint.color = const Color.fromRGBO(167, 12, 56, 1);
+//     paint.color = const Color.fromRGBO(167, 12, 56, 1);
 
-    paint.style = PaintingStyle.fill;
-    paint.strokeWidth = 2;
+//     paint.style = PaintingStyle.fill;
+//     paint.strokeWidth = 2;
 
-    Path path = Path();
+//     Path path = Path();
 
-    path.moveTo(size.width * 0.10, 0);
-    path.lineTo(size.width * 0.8, 0);
-    path.quadraticBezierTo(
-        size.width * 0.85, 0, size.height, size.height * 0.1);
-    path.lineTo(size.width * 0.9, size.height * 0.9);
-    path.quadraticBezierTo(
-        size.width * 0.8, size.height * 0.95, size.width, size.height);
-    path.lineTo(size.width * 0.10, size.height);
-    path.close();
+//     path.moveTo(size.width * 0.10, 0);
+//     path.lineTo(size.width * 0.8, 0);
+//     path.quadraticBezierTo(
+//         size.width * 0.85, 0, size.height, size.height * 0.1);
+//     path.lineTo(size.width * 0.9, size.height * 0.9);
+//     path.quadraticBezierTo(
+//         size.width * 0.8, size.height * 0.95, size.width, size.height);
+//     path.lineTo(size.width * 0.10, size.height);
+//     path.close();
 
-    canvas.drawPath(path, paint);
-  }
+//     canvas.drawPath(path, paint);
+//   }
 
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }
-}
+//   @override
+//   bool shouldRepaint(covariant CustomPainter oldDelegate) {
+//     return true;
+//   }
+// }

@@ -1,0 +1,23 @@
+{
+  "tTitle": "welcome back",
+  "tSubTitle": "What do you want to consult today?",
+  "tConfig": "Settings",
+  "bLogout": "Log out",
+  "mLanguage": "Language",
+  "bEnglish": "English",
+  "bSpanish": "Spanish",
+  "bName": "Name or Alias",
+  "bBirthday": "Zodiac sign",
+  "bContinue": "Continue",
+  "tOracle": "Oracle",
+  "mOracle": "Write your question here, remember to end your question with '?' This oracle only gives “yes” and “no” answers.",
+  "tLoadMessage": "Leading the stars...",
+  "tHoroscope": "Horoscope",
+  "mToday": "Today",
+  "mMonth": "Monthly",
+  "tReflection": "reflection of the day",
+  "tAdvice": "Tips for your sign",
+  "tTarot": "Tarot",
+  "mSubtitle": "Pick a card to get a reading",
+  "tCompatibility": "compatibility between signs"
+}

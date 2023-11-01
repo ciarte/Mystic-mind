@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:horoscope_app/db/entities/entities.dart';
+import 'package:horoscope_app/generated/l10n.dart';
+import 'package:horoscope_app/infrastructure/datasources/translate_request.dart';
 
 class OracleMessageBubble extends StatelessWidget {
-  final Message message;
-
-  const OracleMessageBubble({super.key, required this.message});
+  final String text;
+  final String? imageUrl;
+  const OracleMessageBubble({
+    super.key,
+    required this.text,
+    this.imageUrl,
+  });
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme;
-
+    final idioma = S.current.bSpanish;
     return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -21,7 +27,7 @@ class OracleMessageBubble extends StatelessWidget {
                 color: Colors.white, borderRadius: BorderRadius.circular(15)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text(message.text,
+              child: Text((text == 'yes' && idioma == 'Español') ? 'Si' : text,
                   style: const TextStyle(
                     // color: Colors.white,
                     fontSize: 24,
@@ -32,9 +38,7 @@ class OracleMessageBubble extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          _ImageBubble(message.imageUrl != null
-              ? (message.imageUrl!)
-              : 'https://pm1.narvii.com/7083/d8bad77dd802352b0587362104062c65a25e9392r1-798-420v2_128.jpg'),
+          _ImageBubble(imageUrl!),
           const SizedBox(
             height: 20,
           ),
@@ -44,11 +48,11 @@ class OracleMessageBubble extends StatelessWidget {
 
 class _ImageBubble extends StatelessWidget {
   final String imageUrl;
-
   const _ImageBubble(this.imageUrl);
 
   @override
   Widget build(BuildContext context) {
+    final texts = S.of(context);
     final size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
@@ -69,13 +73,12 @@ class _ImageBubble extends StatelessWidget {
               if (loadingProgress == null) return child;
 
               return Container(
-                alignment: AlignmentDirectional.center,
-                width: size.width * 0.7,
-                height: 250,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: const Text('Leyendo los astros...'),
-              );
+                  alignment: AlignmentDirectional.center,
+                  width: size.width * 0.7,
+                  height: 250,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Text(texts.tLoadMessage));
             },
           )),
     );

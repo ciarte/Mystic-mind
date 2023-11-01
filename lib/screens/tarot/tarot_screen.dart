@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math' as Math;
 import 'package:horoscope_app/db/entities/entities.dart';
+import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/providers/providers.dart';
 
 class TarotScreen extends ConsumerStatefulWidget {
@@ -15,11 +16,15 @@ class TarotScreen extends ConsumerStatefulWidget {
 
 class TarotScreenState extends ConsumerState<TarotScreen> {
   bool _isCardSelected = false;
+  double opacity = 0.0;
   void activateAnimation(String desc) {
-    setState(() {
-      _isCardSelected = true;
-      _showSnackBar(desc);
-    });
+    _isCardSelected != _isCardSelected;
+    setState(
+      () {
+        _isCardSelected = true;
+        _showSnackBar(desc);
+      },
+    );
   }
 
   void _showSnackBar(String desc) {
@@ -53,6 +58,7 @@ class TarotScreenState extends ConsumerState<TarotScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final texts = S.of(context);
     final tarot = ref.watch(tarotCardsProvider);
     final tarots = ref.watch(tarotThreeCardsProvider);
     final isDarkmode = ref.watch(darkModeProvider);
@@ -60,7 +66,7 @@ class TarotScreenState extends ConsumerState<TarotScreen> {
     final image = ref.watch(imageTarotStartProvider);
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Tarot'),
+          title: Text(texts.tTarot),
         ),
         body: Stack(
           children: [
@@ -112,8 +118,7 @@ class TarotScreenState extends ConsumerState<TarotScreen> {
                       child: AnimatedTextKit(
                         isRepeatingAnimation: false,
                         animatedTexts: [
-                          TypewriterAnimatedText(
-                              'Elije una carta para obtener una lectura',
+                          TypewriterAnimatedText(texts.mSubtitle,
                               cursor: '.',
                               speed: const Duration(milliseconds: 70),
                               textStyle: const TextStyle(
@@ -138,6 +143,7 @@ class TarotScreenState extends ConsumerState<TarotScreen> {
                           borderRadius: BorderRadius.circular(20)),
                       child: _isCardSelected
                           ? _CardDescription(
+                              opacity: 0.0,
                               description: description,
                               image: image,
                             )
@@ -209,7 +215,7 @@ class _TarotCards extends ConsumerWidget {
 
   @override
   Widget build(BuildContext contex, WidgetRef ref) {
-    // ref.watch(animatedStartProvider);
+    final texts = S.current.bSpanish;
     return SizedBox(
         height: 250,
         width: double.infinity,
@@ -233,14 +239,13 @@ class _TarotCards extends ConsumerWidget {
                     ref
                         .read(imageTarotStartProvider.notifier)
                         .changeImageTarot((data[index].sequence).toString());
-                    ref
+                    final h = ref
                         .read(animatedStartProvider.notifier)
-                        .changeTarot(data[index].desc);
+                        .changeTarot(data: data[index].desc, language: texts);
+                    final result = await h;
                     final state =
                         context.findAncestorStateOfType<TarotScreenState>();
-                    state?.activateAnimation(data[index].desc);
-
-                    print('ESTO ES LA CARTA ${data[index].name}');
+                    state?.activateAnimation(result);
                   },
                   child: const _CardImage());
             }));
@@ -251,7 +256,7 @@ class _CardImage extends ConsumerWidget {
   const _CardImage();
 
   @override
-  Widget build(BuildContext contex, WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDarkmode = ref.watch(darkModeProvider);
     return Image.asset(isDarkmode
         ? 'assets/tarot_cards/dark.png'
@@ -263,8 +268,10 @@ class _CardDescription extends StatefulWidget {
   final String description;
 
   final String image;
+  final double opacity;
 
-  const _CardDescription({required this.image, required this.description});
+  const _CardDescription(
+      {required this.image, required this.description, required this.opacity});
 
   @override
   State<_CardDescription> createState() => _CardDescriptionState();
@@ -274,6 +281,7 @@ class _CardDescriptionState extends State<_CardDescription> {
   double opacityLevel = 0.0;
 
   void initState() {
+    opacityLevel = 0.0;
     super.initState();
     // Agrega un tiempo de espera antes de que aparezca el widget
     Future.delayed(const Duration(milliseconds: 2000), () {
@@ -293,7 +301,7 @@ class _CardDescriptionState extends State<_CardDescription> {
         child: SizedBox(
           height: 260,
           width: 230,
-          child: int.parse(widget.image) >= 22
+          child: int.parse(widget.image) <= 22
               ? Image.asset('assets/tarot_cards/${widget.image}.png',
                   fit: BoxFit.cover)
               : Image.asset('assets/tarot_cards/0.png', fit: BoxFit.cover),
@@ -353,15 +361,12 @@ class _AnimatedCardState extends ConsumerState<AnimatedCard>
 
   @override
   Widget build(BuildContext context) {
-    // final description = ref.watch(animatedStartProvider);
-    // final image = ref.watch(imageTarotStartProvider);
     controller.forward();
 
     return AnimatedBuilder(
       animation: controller,
       // child: child,
       builder: (BuildContext context, Widget? child) {
-        // print('bigger ${bigger.value}');
         return Transform.translate(
           offset: Offset(0, move.value),
           child: Transform.rotate(

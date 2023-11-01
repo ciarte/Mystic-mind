@@ -1,0 +1,23 @@
+{
+  "tTitle": "te da la bienvenida",
+  "tSubTitle": "¿Qué deseas consultar hoy?",
+  "tConfig": "Configuracion",
+  "bLogout": "Salir",
+  "mLanguage": "Idioma",
+  "bEnglish": "Ingles",
+  "bSpanish": "Español",
+  "bName": "Nombre o Alias",
+  "bBirthday": "Signo Zodiacal",
+  "bContinue": "Continuar",
+  "tOracle": "Oraculo",
+  "mOracle": "Escribe aquí tu consulta, recuerda terminar tu pregunta con “?” Este oráculo solo da respuestas de “sí” y “no”",
+  "tLoadMessage": "Leyendo los astros....",
+  "tHoroscope": "Horoscopo",
+  "mToday": "Hoy",
+  "mMonth": "Mes",
+  "tReflection": "Reflexion del dia",
+  "tAdvice": "Consejo para tu signo",
+  "tTarot": "Tarot",
+  "mSubtitle": "Elije una carta para obtener una lectura",
+  "tCompatibility": "Compatibilidad entre signos"
+}

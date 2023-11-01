@@ -1,3 +1,6 @@
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:horoscope_app/generated/l10n.dart';
+
 class MenuItem {
   final String title;
   final String location;
@@ -7,35 +10,37 @@ class MenuItem {
       {required this.title, required this.location, required this.image});
 }
 
-const appMenuItems = <MenuItem>[
-  MenuItem(
-    title: 'Horoscopo',
-    location: '/horoscope',
-    image: 'assets/horoscope.png',
-  ),
-  MenuItem(
-    title: 'Oraculo',
-    location: '/oracle',
-    image: 'assets/oraculow.png',
-  ),
-  MenuItem(
-    title: 'Reflexion del dia',
-    location: '/compatibility',
-    image: 'assets/reflexion.png',
-  ),
-  MenuItem(
-    title: 'Consejo para tu signo',
-    location: '/config',
-    image: 'assets/consejo.png',
-  ),
-  MenuItem(
-    title: 'Tarot',
-    location: '/tarot',
-    image: 'assets/tarot.png',
-  ),
-  MenuItem(
-    title: 'Compatibilidad entre signos',
-    location: '/compatibility',
-    image: 'assets/compatibilidad.png',
-  ),
-];
+List<MenuItem> getAppMenuItems(BuildContext context) {
+  return <MenuItem>[
+    MenuItem(
+      title: S.of(context).tHoroscope,
+      location: '/horoscope',
+      image: 'assets/horoscope.png',
+    ),
+    MenuItem(
+      title: S.of(context).tOracle,
+      location: '/oracle',
+      image: 'assets/oraculow.png',
+    ),
+    MenuItem(
+      title: S.of(context).tReflection,
+      location: '/compatibility',
+      image: 'assets/reflexion.png',
+    ),
+    MenuItem(
+      title: S.of(context).tAdvice,
+      location: '/config',
+      image: 'assets/consejo.png',
+    ),
+    MenuItem(
+      title: S.of(context).tTarot,
+      location: '/tarot',
+      image: 'assets/tarot.png',
+    ),
+    MenuItem(
+      title: S.of(context).tCompatibility,
+      location: '/compatibility',
+      image: 'assets/compatibilidad.png',
+    ),
+  ];
+}
