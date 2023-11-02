@@ -29,7 +29,7 @@ List<MenuItem> getAppMenuItems(BuildContext context) {
     ),
     MenuItem(
       title: S.of(context).tAdvice,
-      location: '/config',
+      location: '/tips',
       image: 'assets/consejo.png',
     ),
     MenuItem(

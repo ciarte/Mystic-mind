@@ -47,12 +47,12 @@ GoRouter appRouter(AppRouterRef ref) {
           return const CompatibilityScreen();
         },
       ),
-      GoRoute(
-        path: '/compatibility_result',
-        builder: (BuildContext context, GoRouterState state) {
-          return CompatibilityResult();
-        },
-      ),
+      // GoRoute(
+      //   path: '/compatibility_result',
+      //   builder: (BuildContext context, GoRouterState state) {
+      //     return CompatibilityResult();
+      //   },
+      // ),
       GoRoute(
         path: '/horoscope',
         builder: (BuildContext context, GoRouterState state) {
@@ -71,6 +71,18 @@ GoRouter appRouter(AppRouterRef ref) {
           return const TarotScreen();
         },
       ),
+      GoRoute(
+        path: '/tips',
+        builder: (BuildContext context, GoRouterState state) {
+          return const Tips();
+        },
+      ),
+      // GoRoute(
+      //   path: '/reflection',
+      //   builder: (BuildContext context, GoRouterState state) {
+      //     return const Reflection();
+      //   },
+      // ),
       GoRoute(
         path: '/config',
         builder: (BuildContext context, GoRouterState state) {

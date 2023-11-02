@@ -81,6 +81,10 @@ flutter:
     - assets/facebook.png
     - assets/compatibilidad.png
     - assets/consejo.png
+    - assets/phrase1.png
+    - assets/phrase2.png
+    - assets/phrase3.png
+    - assets/phrase4.png
     - assets/horoscope.png
     - assets/reflexion.png
     - assets/oraculow.png

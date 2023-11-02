@@ -4,24 +4,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/providers/providers.dart';
 
-class CompatibilityResult extends ConsumerWidget {
-  final String sign1;
-  final String sign2;
-
-  const CompatibilityResult(
-      {super.key, required this.sign1, required this.sign2});
+class Tips extends ConsumerWidget {
+  const Tips({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final texts = S.of(context);
     final language = S.current.bSpanish;
     final isDarkmode = ref.watch(darkModeProvider);
-    final phrase = ref.watch(compatibilityProvider(sign1, sign2, language));
+    final phrase = ref.watch(dayliPhraseProvider(language));
 
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: Text(texts.tCompatibility),
+              title: Text(texts.tAdvice),
             ),
             body: Stack(children: [
               Container(
@@ -66,24 +62,22 @@ class CompatibilityResult extends ConsumerWidget {
               Center(
                   child: Column(
                 children: [
-                  Row(children: [
-                    Image.asset(isDarkmode
-                        ? 'assets/matchs_cards/${'${sign1}_dark'}.png'
-                        : 'assets/matchs_cards/$sign1.png'),
-                    Image.asset(isDarkmode
-                        ? 'assets/matchs_cards/${'${sign2}_dark'}.png'
-                        : 'assets/matchs_cards/$sign2.png'),
-                  ]),
+                  Container(
+                    width: 200,
+                    height: 250,
+                    child: Image.asset(isDarkmode
+                        ? 'assets/phrase1.png'
+                        : 'assets/phrase2.png'),
+                  ),
                   Expanded(
                     child: SingleChildScrollView(
-                      child: Container(
-                        child: phrase.when(
-                          data: (data) => _PhraseText(data: data),
-                          loading: () =>
-                              const Center(child: CircularProgressIndicator()),
-                          error: (Object error, StackTrace stackTrace) =>
-                              Text('$error'),
-                        ),
+                      // child: Container(child: Text('aqui el texto')
+                      child: phrase.when(
+                        data: (data) => _PhraseText(data: data),
+                        loading: () =>
+                            const Center(child: CircularProgressIndicator()),
+                        error: (Object error, StackTrace stackTrace) =>
+                            Text('$error'),
                       ),
                     ),
                   ),
