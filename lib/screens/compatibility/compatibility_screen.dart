@@ -1,48 +1,169 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:horoscope_app/generated/l10n.dart';
+import 'package:horoscope_app/providers/providers.dart';
+import 'package:horoscope_app/widgets/widgets.dart';
 
-class CompatibilityScreen extends StatelessWidget {
+class CompatibilityScreen extends ConsumerStatefulWidget {
   const CompatibilityScreen({super.key});
+
+  @override
+  CompatibilityScreenState createState() => CompatibilityScreenState();
+}
+
+class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
+  late int firstSelectedIndex;
+  late int secondSelectedIndex;
+  late String firstSelectedZodiac;
+  late String secondSelectedZodiac;
 
   @override
   Widget build(BuildContext context) {
     final texts = S.of(context);
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(texts.tCompatibility),
+    final isDarkmode = ref.watch(darkModeProvider);
+    return SafeArea(
+        child: Scaffold(
+      appBar: AppBar(
+        title: Text(texts.tCompatibility),
+      ),
+      body: Stack(children: [
+        Container(
+          decoration: !isDarkmode
+              ? const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/fondo.png'),
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.linearToSrgbGamma(),
+                      opacity: 0.5),
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      tileMode: TileMode.decal,
+                      stops: [
+                        0.1,
+                        0.6
+                      ],
+                      colors: [
+                        Color.fromRGBO(254, 211, 170, 1),
+                        Color.fromRGBO(191, 141, 187, 1),
+                      ]))
+              : const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/fondo.png'),
+                      fit: BoxFit.cover,
+                      colorFilter: ColorFilter.linearToSrgbGamma(),
+                      opacity: 0.5),
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      tileMode: TileMode.decal,
+                      stops: [
+                        0.1,
+                        0.6
+                      ],
+                      colors: [
+                        Color.fromRGBO(155, 85, 148, 1),
+                        Color.fromRGBO(23, 5, 66, 1),
+                      ])),
+          child: Column(children: [
+            SizedBox(
+                height: 350,
+                width: double.infinity,
+                child: Swiper(
+                    loop: false,
+                    viewportFraction: 0.5,
+                    layout: SwiperLayout.CUSTOM,
+                    customLayoutOption:
+                        CustomLayoutOption(startIndex: -1, stateCount: 3)
+                          ..addRotate([0.50, 0.0, -0.50])
+                          ..addTranslate([
+                            const Offset(-190.0, -15.0),
+                            const Offset(0.0, 0.0),
+                            const Offset(190.0, -15.0)
+                          ]),
+                    itemWidth: 150.0,
+                    itemHeight: 250.0,
+                    itemCount: getAppMenuItems(context).length,
+                    itemBuilder: (context, index) {
+                      // print('index segunda seleccion: $index');
+                      final zodiac = getAppMenuItems(context)[index];
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            firstSelectedIndex = index;
+                            firstSelectedZodiac = zodiac.location;
+                            print(
+                                'Ubicación del seleccionado: $firstSelectedIndex');
+                            print(firstSelectedZodiac);
+                          });
+                        },
+                        child: _Slide(
+                          movie: isDarkmode ? zodiac.imageDark : zodiac.image,
+                        ),
+                      );
+                    })),
+            const Icon(
+              Icons.add,
+              size: 50,
+              color: Color.fromRGBO(167, 12, 53, 1),
+            ),
+            SizedBox(
+                height: 300,
+                width: double.infinity,
+                child: Swiper(
+                    loop: false,
+                    viewportFraction: 0.5,
+                    layout: SwiperLayout.CUSTOM,
+                    customLayoutOption:
+                        CustomLayoutOption(startIndex: -1, stateCount: 3)
+                          ..addRotate([-0.50, 0.0, 0.50])
+                          ..addTranslate([
+                            const Offset(-190.0, -15.0),
+                            const Offset(0.0, 0.0),
+                            const Offset(190.0, -15.0)
+                          ]),
+                    itemWidth: 150.0,
+                    itemHeight: 250.0,
+                    itemCount: getAppMenuItems(context).length,
+                    itemBuilder: (context, index) {
+                      // print('index segunda seleccion: $index');
+                      final zodiac = getAppMenuItems(context)[index];
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            secondSelectedIndex = index;
+                            secondSelectedZodiac = zodiac.location;
+
+                            print(
+                                'Ubicación del seleccionado: $secondSelectedZodiac');
+                            print(secondSelectedZodiac);
+                          });
+                        },
+                        child: _Slide(
+                          movie: isDarkmode ? zodiac.imageDark : zodiac.image,
+                        ),
+                      );
+                    })),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14.0),
+              child: LoginButton(
+                  nameButton: 'Comparar',
+                  onPressed: () {
+                    print(
+                        'boton con $firstSelectedZodiac & $secondSelectedZodiac');
+                  }),
+            ),
+          ]),
         ),
-        body: Column(children: [
-          SizedBox(
-              height: 250,
-              width: double.infinity,
-              child: Swiper(
-                  loop: false,
-                  scale: 0.9,
-                  viewportFraction: 0.2,
-                  layout: SwiperLayout.CUSTOM,
-                  customLayoutOption:
-                      CustomLayoutOption(startIndex: -1, stateCount: 3)
-                        ..addRotate([-0.3, 0.0, 0.3])
-                        ..addTranslate([
-                          const Offset(-180.0, -15.0),
-                          const Offset(0.0, 0.0),
-                          const Offset(180.0, -15.0)
-                        ]),
-                  itemWidth: 100.0,
-                  itemHeight: 250.0,
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return _Slide(
-                      movie: Image.asset('assets/tarot_cards/dark.png'),
-                    );
-                  }))
-        ]));
+      ]),
+    ));
   }
 }
 
 class _Slide extends StatelessWidget {
-  final movie;
+  final String movie;
+
   const _Slide({required this.movie});
 
   @override
@@ -51,12 +172,84 @@ class _Slide extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
     );
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
-      child: DecoratedBox(
-          decoration: decoration,
-          child:
-              ClipRRect(borderRadius: BorderRadius.circular(20), child: movie)),
+    return DecoratedBox(
+      decoration: decoration,
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(20), child: Image.asset(movie)),
     );
   }
+}
+
+class ZodiacItem {
+  final String location;
+  final String image;
+  final String imageDark;
+
+  const ZodiacItem(
+      {required this.location, required this.image, required this.imageDark});
+}
+
+List<ZodiacItem> getAppMenuItems(BuildContext context) {
+  return <ZodiacItem>[
+    const ZodiacItem(
+      location: 'aquarius',
+      image: 'assets/matchs_cards/aquarius.png',
+      imageDark: 'assets/matchs_cards/aquarius_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'aries',
+      image: 'assets/matchs_cards/aries.png',
+      imageDark: 'assets/matchs_cards/aries_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'cancer',
+      image: 'assets/matchs_cards/cancer.png',
+      imageDark: 'assets/matchs_cards/cancer_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'capricorn',
+      image: 'assets/matchs_cards/capricorn.png',
+      imageDark: 'assets/matchs_cards/capricorn_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'geminis',
+      image: 'assets/matchs_cards/geminis.png',
+      imageDark: 'assets/matchs_cards/geminis_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'leo',
+      image: 'assets/matchs_cards/leo.png',
+      imageDark: 'assets/matchs_cards/leo_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'libra',
+      image: 'assets/matchs_cards/libra.png',
+      imageDark: 'assets/matchs_cards/libra_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'pisces',
+      image: 'assets/matchs_cards/pisces.png',
+      imageDark: 'assets/matchs_cards/pisces_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'sagittarius',
+      image: 'assets/matchs_cards/sagittarius.png',
+      imageDark: 'assets/matchs_cards/sagittarius_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'scorpio',
+      image: 'assets/matchs_cards/scorpio.png',
+      imageDark: 'assets/matchs_cards/scorpio_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'taurus',
+      image: 'assets/matchs_cards/taurus.png',
+      imageDark: 'assets/matchs_cards/taurus_dark.png',
+    ),
+    const ZodiacItem(
+      location: 'virgo',
+      image: 'assets/matchs_cards/virgo.png',
+      imageDark: 'assets/matchs_cards/virgo_dark.png',
+    ),
+  ];
 }
