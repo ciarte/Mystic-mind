@@ -1,8 +1,10 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/providers/providers.dart';
+import 'package:horoscope_app/screens/screens.dart';
 import 'package:horoscope_app/widgets/widgets.dart';
 
 class CompatibilityScreen extends ConsumerStatefulWidget {
@@ -67,21 +69,23 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                         Color.fromRGBO(23, 5, 66, 1),
                       ])),
           child: Column(children: [
+            SizedBox(height: 50),
             SizedBox(
-                height: 350,
+                height: 200,
                 width: double.infinity,
                 child: Swiper(
-                    loop: false,
+                    // loop: false,
                     viewportFraction: 0.5,
-                    layout: SwiperLayout.CUSTOM,
-                    customLayoutOption:
-                        CustomLayoutOption(startIndex: -1, stateCount: 3)
-                          ..addRotate([0.50, 0.0, -0.50])
-                          ..addTranslate([
-                            const Offset(-190.0, -15.0),
-                            const Offset(0.0, 0.0),
-                            const Offset(190.0, -15.0)
-                          ]),
+                    scale: 0.5,
+                    // layout: SwiperLayout.CUSTOM,
+                    // customLayoutOption:
+                    //     CustomLayoutOption(startIndex: -1, stateCount: 3)
+                    //       ..addRotate([-0.50, 0.0, 0.50])
+                    //       ..addTranslate([
+                    //         const Offset(-190.0, -15.0),
+                    //         const Offset(0.0, 0.0),
+                    //         const Offset(190.0, -15.0)
+                    //       ]),
                     itemWidth: 150.0,
                     itemHeight: 250.0,
                     itemCount: getAppMenuItems(context).length,
@@ -93,9 +97,6 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                           setState(() {
                             firstSelectedIndex = index;
                             firstSelectedZodiac = zodiac.location;
-                            print(
-                                'Ubicación del seleccionado: $firstSelectedIndex');
-                            print(firstSelectedZodiac);
                           });
                         },
                         child: _Slide(
@@ -104,25 +105,26 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                       );
                     })),
             const Icon(
-              Icons.add,
-              size: 50,
+              Icons.add_rounded,
+              size: 100,
               color: Color.fromRGBO(167, 12, 53, 1),
             ),
             SizedBox(
-                height: 300,
+                height: 200,
                 width: double.infinity,
                 child: Swiper(
-                    loop: false,
+                    // loop: false,
                     viewportFraction: 0.5,
-                    layout: SwiperLayout.CUSTOM,
-                    customLayoutOption:
-                        CustomLayoutOption(startIndex: -1, stateCount: 3)
-                          ..addRotate([-0.50, 0.0, 0.50])
-                          ..addTranslate([
-                            const Offset(-190.0, -15.0),
-                            const Offset(0.0, 0.0),
-                            const Offset(190.0, -15.0)
-                          ]),
+                    scale: 0.5,
+                    // layout: SwiperLayout.CUSTOM,
+                    // customLayoutOption:
+                    //     CustomLayoutOption(startIndex: -1, stateCount: 3)
+                    //       ..addRotate([-0.50, 0.0, 0.50])
+                    //       ..addTranslate([
+                    //         const Offset(-190.0, -15.0),
+                    //         const Offset(0.0, 0.0),
+                    //         const Offset(190.0, -15.0)
+                    //       ]),
                     itemWidth: 150.0,
                     itemHeight: 250.0,
                     itemCount: getAppMenuItems(context).length,
@@ -134,10 +136,6 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                           setState(() {
                             secondSelectedIndex = index;
                             secondSelectedZodiac = zodiac.location;
-
-                            print(
-                                'Ubicación del seleccionado: $secondSelectedZodiac');
-                            print(secondSelectedZodiac);
                           });
                         },
                         child: _Slide(
@@ -146,13 +144,24 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                       );
                     })),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 14.0, vertical: 50),
               child: LoginButton(
                   nameButton: 'Comparar',
                   onPressed: () {
-                    print(
-                        'boton con $firstSelectedZodiac & $secondSelectedZodiac');
-                  }),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CompatibilityResult(
+                          sign1: firstSelectedZodiac,
+                          sign2: secondSelectedZodiac,
+                        ),
+                      ),
+                    );
+                  }
+                  // print(
+                  //     'boton con $firstSelectedZodiac & $secondSelectedZodiac');
+                  ),
             ),
           ]),
         ),

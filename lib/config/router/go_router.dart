@@ -48,6 +48,12 @@ GoRouter appRouter(AppRouterRef ref) {
         },
       ),
       GoRoute(
+        path: '/compatibility_result',
+        builder: (BuildContext context, GoRouterState state) {
+          return CompatibilityResult();
+        },
+      ),
+      GoRoute(
         path: '/horoscope',
         builder: (BuildContext context, GoRouterState state) {
           return const HoroscopeScreen();
