@@ -46,7 +46,7 @@ class HoroscopeRequest {
   static Future<String> getCompatibility(String sign1, String sign2) async {
     final dio = Dio();
     final response = await dio.get(
-      'https://horoscope-astrology.p.rapidapi.com/affinity?sign1=aries&sign2=taurus',
+      'https://horoscope-astrology.p.rapidapi.com/affinity?sign1=$sign1&sign2=$sign2',
       options: Options(
         headers: {
           'X-RapidAPI-Key':
@@ -55,8 +55,8 @@ class HoroscopeRequest {
         },
       ),
     );
-    print(response);
-    final dayliHoroscope = (response.data);
+    print(response.data[0]['text']);
+    final dayliHoroscope = (response.data[0]['text']);
 
     return dayliHoroscope;
   }

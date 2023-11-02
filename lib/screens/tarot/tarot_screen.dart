@@ -299,13 +299,10 @@ class _CardDescriptionState extends State<_CardDescription> {
       child: Align(
         alignment: Alignment.topCenter,
         child: SizedBox(
-          height: 260,
-          width: 230,
-          child: int.parse(widget.image) <= 22
-              ? Image.asset('assets/tarot_cards/${widget.image}.png',
-                  fit: BoxFit.cover)
-              : Image.asset('assets/tarot_cards/0.png', fit: BoxFit.cover),
-        ),
+            height: 260,
+            width: 230,
+            child: Image.asset('assets/tarot_cards/${widget.image}.png',
+                fit: BoxFit.cover)),
       ),
     );
   }
