@@ -3,16 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:horoscope_app/config/config.dart';
 import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/providers/providers.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:horoscope_app/services/local_storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await LocalStorage.configurePrefs();
+
   runApp(const ProviderScope(
     child: MyApp(),
   ));
@@ -54,6 +52,6 @@ Locale _getLocale(Language selectedLanguage) {
     case Language.es:
       return const Locale('es');
     default:
-      return const Locale('en');
+      return const Locale('es');
   }
 }

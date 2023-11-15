@@ -14,30 +14,6 @@ GoRouter appRouter(AppRouterRef ref) {
       GoRoute(
         path: '/',
         builder: (BuildContext context, GoRouterState state) {
-          return const AuthChecker();
-        },
-      ),
-      GoRoute(
-        path: '/login',
-        builder: (BuildContext context, GoRouterState state) {
-          return const LoginScreen();
-        },
-      ),
-      GoRoute(
-        path: '/register',
-        builder: (BuildContext context, GoRouterState state) {
-          return const RegisterScreen();
-        },
-      ),
-      GoRoute(
-        path: '/userRegister',
-        builder: (BuildContext context, GoRouterState state) {
-          return const UserDataScreen();
-        },
-      ),
-      GoRoute(
-        path: '/home',
-        builder: (BuildContext context, GoRouterState state) {
           return const HomeScreen();
         },
       ),
@@ -47,12 +23,6 @@ GoRouter appRouter(AppRouterRef ref) {
           return const CompatibilityScreen();
         },
       ),
-      // GoRoute(
-      //   path: '/compatibility_result',
-      //   builder: (BuildContext context, GoRouterState state) {
-      //     return CompatibilityResult();
-      //   },
-      // ),
       GoRoute(
         path: '/horoscope',
         builder: (BuildContext context, GoRouterState state) {
@@ -77,12 +47,6 @@ GoRouter appRouter(AppRouterRef ref) {
           return const Tips();
         },
       ),
-      // GoRoute(
-      //   path: '/reflection',
-      //   builder: (BuildContext context, GoRouterState state) {
-      //     return const Reflection();
-      //   },
-      // ),
       GoRoute(
         path: '/config',
         builder: (BuildContext context, GoRouterState state) {

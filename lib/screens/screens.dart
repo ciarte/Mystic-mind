@@ -1,12 +1,10 @@
 export 'chat/oracle_screen.dart';
 export 'horoscope/horoscope_screen.dart';
+export 'horoscope/sign_selection_screen.dart';
 export 'home/home_screen.dart';
 export 'user_config/user_config.dart';
 export 'tarot/tarot_screen.dart';
 export 'compatibility/compatibility_screen.dart';
 export 'compatibility/compatibility_result.dart';
-export 'login/login_screen.dart';
-export 'auth/uath_checker.dart';
-export 'register/register_screen.dart';
-export 'register/user_data_screen.dart';
+
 export 'tips/tips_screen.dart';

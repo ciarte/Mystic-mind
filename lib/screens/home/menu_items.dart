@@ -18,19 +18,9 @@ List<MenuItem> getAppMenuItems(BuildContext context) {
       image: 'assets/horoscope.png',
     ),
     MenuItem(
-      title: S.of(context).tOracle,
-      location: '/oracle',
-      image: 'assets/oraculow.png',
-    ),
-    MenuItem(
-      title: S.of(context).tReflection,
+      title: S.of(context).tCompatibility,
       location: '/compatibility',
-      image: 'assets/reflexion.png',
-    ),
-    MenuItem(
-      title: S.of(context).tAdvice,
-      location: '/tips',
-      image: 'assets/consejo.png',
+      image: 'assets/compatibilidad.png',
     ),
     MenuItem(
       title: S.of(context).tTarot,
@@ -38,9 +28,14 @@ List<MenuItem> getAppMenuItems(BuildContext context) {
       image: 'assets/tarot.png',
     ),
     MenuItem(
-      title: S.of(context).tCompatibility,
-      location: '/compatibility',
-      image: 'assets/compatibilidad.png',
+      title: S.of(context).tOracle,
+      location: '/oracle',
+      image: 'assets/oraculow.png',
+    ),
+    MenuItem(
+      title: S.of(context).tAdvice,
+      location: '/tips',
+      image: 'assets/consejo.png',
     ),
   ];
 }

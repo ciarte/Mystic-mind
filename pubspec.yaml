@@ -49,6 +49,7 @@ dependencies:
   firebase_analytics: ^10.5.1
   google_fonts: ^6.1.0
   equatable: ^2.0.5
+  shared_preferences: ^2.2.2
   flutter_localizations:
     sdk: flutter
 
