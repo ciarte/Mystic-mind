@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:horoscope_app/db/entities/message_entity.dart';
+import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/infrastructure/datasources/oracle_answer.dart';
 import 'package:horoscope_app/infrastructure/datasources/translate_request.dart';
 import 'package:horoscope_app/providers/config/language_config_provider.dart';
@@ -12,19 +13,17 @@ class ChatOracle extends ChangeNotifier {
   final selectedLanguage = CurrentLanguage();
 
   List<Message> messageList = [
-    // Message(
-    //   fromWho: FromWho.oracle,
-    //   text:
-    //       'Escribe aquí tu consulta, recuerda terminar tu pregunta con “?” Este oráculo solo da respuestas de “sí” y “no”',
-    //   //TODO agregar imagen
-    // ),
+    Message(
+        fromWho: FromWho.oracle,
+        text: S.current.mOracle,
+        imageUrl: 'assets/oracle.png'),
   ];
 
   Future<void> moveScrollToBottom() async {
-    await Future.delayed(const Duration(milliseconds: 100));
+    await Future.delayed(const Duration(milliseconds: 200));
     chatScrollController.animateTo(
       chatScrollController.position.maxScrollExtent,
-      duration: const Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
     );
   }

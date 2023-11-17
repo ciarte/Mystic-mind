@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:horoscope_app/db/entities/entities.dart';
+
 import 'package:horoscope_app/generated/l10n.dart';
-import 'package:horoscope_app/infrastructure/datasources/translate_request.dart';
 
 class OracleMessageBubble extends StatelessWidget {
   final String text;
@@ -13,7 +12,6 @@ class OracleMessageBubble extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    final color = Theme.of(context).colorScheme;
     final idioma = S.current.bSpanish;
     return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,23 +62,30 @@ class _ImageBubble extends StatelessWidget {
       ),
       child: ClipRRect(
           borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-            imageUrl,
-            width: size.width * 0.7,
-            height: 250,
-            fit: BoxFit.cover,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-
-              return Container(
-                  alignment: AlignmentDirectional.center,
+          child: imageUrl != 'assets/oracle.png'
+              ? Image.network(
+                  imageUrl,
                   width: size.width * 0.7,
                   height: 250,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  child: Text(texts.tLoadMessage));
-            },
-          )),
+                  fit: BoxFit.cover,
+                  loadingBuilder: (context, child, loadingProgress) {
+                    if (loadingProgress == null) return child;
+
+                    return Container(
+                        alignment: AlignmentDirectional.center,
+                        width: size.width * 0.7,
+                        height: 250,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
+                        child: Text(texts.tLoadMessage));
+                  },
+                )
+              : Image.asset(
+                  'assets/oracle.png',
+                  width: size.width * 0.7,
+                  height: 250,
+                  fit: BoxFit.cover,
+                )),
     );
   }
 }

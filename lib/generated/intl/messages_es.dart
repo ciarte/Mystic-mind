@@ -37,17 +37,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "mToday": MessageLookupByLibrary.simpleMessage("Hoy"),
         "tAdvice":
             MessageLookupByLibrary.simpleMessage("Consejo para tu signo"),
+        "tAlias": MessageLookupByLibrary.simpleMessage("Elije tu Nombre"),
         "tCompatibility":
             MessageLookupByLibrary.simpleMessage("Compatibilidad entre signos"),
         "tConfig": MessageLookupByLibrary.simpleMessage("Configuracion"),
         "tHoroscope": MessageLookupByLibrary.simpleMessage("Horoscopo"),
+        "tLanguage":
+            MessageLookupByLibrary.simpleMessage("Selecciona tu Lenguaje"),
         "tLoadMessage":
             MessageLookupByLibrary.simpleMessage("Leyendo los astros...."),
         "tOracle": MessageLookupByLibrary.simpleMessage("Oraculo"),
         "tReflection":
             MessageLookupByLibrary.simpleMessage("Reflexion del dia"),
+        "tSign": MessageLookupByLibrary.simpleMessage("Elije tu Signo"),
         "tSubTitle":
-            MessageLookupByLibrary.simpleMessage("¿Qué deseas consultar hoy?"),
+            MessageLookupByLibrary.simpleMessage("¿Qué deseas consultar hoy"),
         "tTarot": MessageLookupByLibrary.simpleMessage("Tarot"),
         "tTitle": MessageLookupByLibrary.simpleMessage("te da la bienvenida")
       };

@@ -1,18 +1,15 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-
 part 'language_config_provider.g.dart';
-
-enum Language { en, es }
 
 @riverpod
 class CurrentLanguage extends _$CurrentLanguage {
-  var lenguage = Language.es;
+  var lenguage = 'es';
 
   @override
-  Language build() => Language.en;
+  String build() => 'es';
 
-  void changeLanguage(Language newLanguage) {
+  void changeLanguage(newLanguage) {
     state = newLanguage;
     lenguage = newLanguage;
   }

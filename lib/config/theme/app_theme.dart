@@ -38,7 +38,7 @@ class AppTheme {
         titleTextStyle: GoogleFonts.macondo(
           textStyle: TextStyle(
             color:
-                !isDarkmode ? const Color(0xff000000) : const Color(0xFFEEEBEB),
+                !isDarkmode ? const Color(0xff000000) : const Color(0xFF352742),
             fontSize: 30,
             fontWeight: FontWeight.w400,
             letterSpacing: 1,

@@ -1,4 +1,4 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:horoscope_app/generated/l10n.dart';
 
 class MenuItem {

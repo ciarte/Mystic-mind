@@ -6,6 +6,7 @@ import 'dart:math' as Math;
 import 'package:horoscope_app/db/entities/entities.dart';
 import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/providers/providers.dart';
+import 'package:horoscope_app/widgets/widgets.dart';
 
 class TarotScreen extends ConsumerStatefulWidget {
   const TarotScreen({super.key});
@@ -59,9 +60,9 @@ class TarotScreenState extends ConsumerState<TarotScreen> {
   @override
   Widget build(BuildContext context) {
     final texts = S.of(context);
-    final tarot = ref.watch(tarotCardsProvider);
+    // final tarot = ref.watch(tarotCardsProvider);
     final tarots = ref.watch(tarotThreeCardsProvider);
-    final isDarkmode = ref.watch(darkModeProvider);
+
     final description = ref.watch(animatedStartProvider);
     final image = ref.watch(imageTarotStartProvider);
     return Scaffold(
@@ -70,45 +71,7 @@ class TarotScreenState extends ConsumerState<TarotScreen> {
         ),
         body: Stack(
           children: [
-            Container(
-              decoration: !isDarkmode
-                  ? const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/fondo.png'),
-                          fit: BoxFit.cover,
-                          colorFilter: ColorFilter.linearToSrgbGamma(),
-                          opacity: 0.5),
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          tileMode: TileMode.decal,
-                          stops: [
-                            0.1,
-                            0.6
-                          ],
-                          colors: [
-                            Color.fromRGBO(254, 211, 170, 1),
-                            Color.fromRGBO(191, 141, 187, 1),
-                          ]))
-                  : const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage('assets/fondo.png'),
-                          fit: BoxFit.cover,
-                          colorFilter: ColorFilter.linearToSrgbGamma(),
-                          opacity: 0.5),
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          tileMode: TileMode.decal,
-                          stops: [
-                            0.1,
-                            0.6
-                          ],
-                          colors: [
-                            Color.fromRGBO(155, 85, 148, 1),
-                            Color.fromRGBO(23, 5, 66, 1),
-                          ])),
-            ),
+            const BackGroundWidget(),
             Align(
               alignment: Alignment.topCenter,
               child: Column(
@@ -159,6 +122,58 @@ class TarotScreenState extends ConsumerState<TarotScreen> {
             ),
           ],
         ));
+  }
+}
+
+class NewWidget1 extends StatelessWidget {
+  const NewWidget1({
+    super.key,
+    required this.isDarkmode,
+  });
+
+  final bool isDarkmode;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: !isDarkmode
+          ? const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/fondo.png'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.linearToSrgbGamma(),
+                  opacity: 0.5),
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  tileMode: TileMode.decal,
+                  stops: [
+                    0.1,
+                    0.6
+                  ],
+                  colors: [
+                    Color.fromRGBO(254, 211, 170, 1),
+                    Color.fromRGBO(191, 141, 187, 1),
+                  ]))
+          : const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/fondo.png'),
+                  fit: BoxFit.cover,
+                  colorFilter: ColorFilter.linearToSrgbGamma(),
+                  opacity: 0.5),
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  tileMode: TileMode.decal,
+                  stops: [
+                    0.1,
+                    0.6
+                  ],
+                  colors: [
+                    Color.fromRGBO(155, 85, 148, 1),
+                    Color.fromRGBO(23, 5, 66, 1),
+                  ])),
+    );
   }
 }
 

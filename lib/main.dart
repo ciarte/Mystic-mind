@@ -10,6 +10,7 @@ import 'package:horoscope_app/services/local_storage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStorage.configurePrefs();
+  // Obtener el valor guardado en localStorage
 
   runApp(const ProviderScope(
     child: MyApp(),
@@ -22,9 +23,10 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedLanguage = ref.watch(currentLanguageProvider);
+    // final selectedLanguage = LocalStorage.prefs.getString('selectedLanguage');
     final router = ref.watch(appRouterProvider);
     final isDarkmode = ref.watch(darkModeProvider);
-
+    // bool savedMode = LocalStorage.prefs.getBool('selectedMode') ?? false;
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -45,11 +47,11 @@ class MyApp extends ConsumerWidget {
   }
 }
 
-Locale _getLocale(Language selectedLanguage) {
+Locale _getLocale(selectedLanguage) {
   switch (selectedLanguage) {
-    case Language.en:
+    case 'en':
       return const Locale('en');
-    case Language.es:
+    case 'es':
       return const Locale('es');
     default:
       return const Locale('es');

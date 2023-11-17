@@ -60,10 +60,10 @@ class S {
     );
   }
 
-  /// `What do you want to consult today?`
+  /// `What do you want to consult today`
   String get tSubTitle {
     return Intl.message(
-      'What do you want to consult today?',
+      'What do you want to consult today',
       name: 'tSubTitle',
       desc: '',
       args: [],
@@ -75,6 +75,36 @@ class S {
     return Intl.message(
       'Settings',
       name: 'tConfig',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Your Alias`
+  String get tAlias {
+    return Intl.message(
+      'Select Your Alias',
+      name: 'tAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Your Sign`
+  String get tSign {
+    return Intl.message(
+      'Select Your Sign',
+      name: 'tSign',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Your Language`
+  String get tLanguage {
+    return Intl.message(
+      'Select Your Language',
+      name: 'tLanguage',
       desc: '',
       args: [],
     );

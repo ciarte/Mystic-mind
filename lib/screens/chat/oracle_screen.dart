@@ -83,15 +83,6 @@ class _ChatView extends ConsumerWidget {
                     controller: chatProvider.chatScrollController,
                     itemCount: chatProvider.messageList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      if (index == 0) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: OracleMessageBubble(
-                              text: S.of(context).mOracle,
-                              imageUrl:
-                                  'https://pm1.narvii.com/7083/d8bad77dd802352b0587362104062c65a25e9392r1-798-420v2_128.jpg'),
-                        );
-                      }
                       final message = chatProvider.messageList[index];
 
                       final scale = index == chatProvider.messageList.length - 1

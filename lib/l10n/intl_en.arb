@@ -1,7 +1,10 @@
 {
   "tTitle": "welcome back",
-  "tSubTitle": "What do you want to consult today?",
+  "tSubTitle": "What do you want to consult today",
   "tConfig": "Settings",
+  "tAlias": "Select Your Alias",
+  "tSign": "Select Your Sign",
+  "tLanguage": "Select Your Language",
   "bLogout": "Log out",
   "mLanguage": "Language",
   "bEnglish": "English",

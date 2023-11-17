@@ -8,8 +8,6 @@ import 'package:horoscope_app/screens/home/menu_items.dart';
 import 'package:horoscope_app/screens/horoscope/sign_selection_screen.dart';
 
 import 'package:horoscope_app/widgets/widgets.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../services/local_storage.dart';
 
 class UserConfigScreen extends ConsumerWidget {
@@ -35,13 +33,13 @@ class UserConfigScreen extends ConsumerWidget {
                     : Icons.light_mode_outlined,
                 size: 35),
             onPressed: () {
-              LocalStorage.prefs.setBool('selectedMode', isDarkmode);
+              // LocalStorage.prefs.setBool('selectedMode', isDarkmode);
               ref.read(darkModeProvider.notifier).toggleDarkMode();
             },
           ),
 
           Text(
-            'Select Your Alias',
+            texts.tAlias,
             style: GoogleFonts.macondo(
               fontSize: 32,
               fontWeight: FontWeight.w500,
@@ -51,22 +49,22 @@ class UserConfigScreen extends ConsumerWidget {
             controller: nameController,
             onFieldSubmitted: (String value) {
               LocalStorage.prefs.setString('alias', value);
-
               final keys = LocalStorage.prefs.getKeys();
               for (String key in keys) {
+                print(LocalStorage.prefs.getString('selectedLanguage'));
                 print('$key: ${LocalStorage.prefs.get(key)}');
               }
             },
           ),
 
           Text(
-            'Select Your Sign',
+            texts.tSign,
             style: GoogleFonts.macondo(
               fontSize: 32,
               fontWeight: FontWeight.w500,
             ),
           ),
-          Container(
+          SizedBox(
             height: 380,
             child: GridView.builder(
               controller: ScrollController(),
@@ -86,7 +84,7 @@ class UserConfigScreen extends ConsumerWidget {
           Column(
             children: [
               Text(
-                'Select Your Language',
+                texts.tLanguage,
                 style: GoogleFonts.macondo(
                   fontSize: 32,
                   fontWeight: FontWeight.w500,
@@ -99,7 +97,7 @@ class UserConfigScreen extends ConsumerWidget {
                 children: [
                   RadioListTile(
                     title: Text(texts.bEnglish),
-                    value: Language.en,
+                    value: 'en',
                     groupValue: selectedLanguage,
                     onChanged: (value) {
                       LocalStorage.prefs
@@ -111,7 +109,7 @@ class UserConfigScreen extends ConsumerWidget {
                   ),
                   RadioListTile(
                     title: Text(texts.bSpanish),
-                    value: Language.es,
+                    value: 'es',
                     groupValue: selectedLanguage,
                     onChanged: (value) {
                       ref
@@ -168,11 +166,11 @@ class _CustomListTile extends StatelessWidget {
   }
 }
 
-String getSubtitle(Language selectedLanguage) {
+String getSubtitle(selectedLanguage) {
   switch (selectedLanguage) {
-    case Language.en:
+    case 'en':
       return 'English';
-    case Language.es:
+    case 'es':
       return 'Español';
 
     default:

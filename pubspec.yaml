@@ -41,14 +41,9 @@ dependencies:
   dio: ^5.3.3
   animated_text_kit: ^4.2.2
   animate_do: ^3.0.2
-  firebase_core: ^2.19.0
-  cloud_firestore: ^4.11.0
-  firebase_auth: ^4.11.1
-  firebase_database: ^10.3.1
-  firebase_storage: ^11.3.1
-  firebase_analytics: ^10.5.1
   google_fonts: ^6.1.0
   equatable: ^2.0.5
+  flag: ^7.0.0
   shared_preferences: ^2.2.2
   flutter_localizations:
     sdk: flutter
@@ -88,6 +83,7 @@ flutter:
     - assets/phrase4.png
     - assets/horoscope.png
     - assets/reflexion.png
+    - assets/oracle.png
     - assets/oraculow.png
     - assets/tarot.png
     - assets/fondo.png
