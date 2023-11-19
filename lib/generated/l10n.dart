@@ -80,6 +80,16 @@ class S {
     );
   }
 
+  /// `Theme :`
+  String get tMode {
+    return Intl.message(
+      'Theme :',
+      name: 'tMode',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select Your Alias`
   String get tAlias {
     return Intl.message(

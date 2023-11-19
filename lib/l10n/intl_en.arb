@@ -2,6 +2,7 @@
   "tTitle": "welcome back",
   "tSubTitle": "What do you want to consult today",
   "tConfig": "Settings",
+  "tMode": "Theme :",
   "tAlias": "Select Your Alias",
   "tSign": "Select Your Sign",
   "tLanguage": "Select Your Language",

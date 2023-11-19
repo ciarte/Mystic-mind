@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select Your Language"),
         "tLoadMessage":
             MessageLookupByLibrary.simpleMessage("Leading the stars..."),
+        "tMode": MessageLookupByLibrary.simpleMessage("Theme :"),
         "tOracle": MessageLookupByLibrary.simpleMessage("Oracle"),
         "tReflection":
             MessageLookupByLibrary.simpleMessage("reflection of the day"),
