@@ -94,8 +94,8 @@ class CompatibilityResult extends ConsumerWidget {
 }
 
 class _PhraseText extends StatelessWidget {
-  final data;
-  const _PhraseText({super.key, this.data});
+  final String data;
+  const _PhraseText({required this.data});
 
   @override
   Widget build(BuildContext context) {

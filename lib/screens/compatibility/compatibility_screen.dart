@@ -221,8 +221,8 @@ List<ZodiacItem> getAppMenuItems(BuildContext context) {
     ),
     const ZodiacItem(
       location: 'geminis',
-      image: 'assets/matchs_cards/geminis.png',
-      imageDark: 'assets/matchs_cards/geminis_dark.png',
+      image: 'assets/matchs_cards/gemini.png',
+      imageDark: 'assets/matchs_cards/gemini_dark.png',
     ),
     const ZodiacItem(
       location: 'leo',

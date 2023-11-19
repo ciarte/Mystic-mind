@@ -100,6 +100,16 @@ class S {
     );
   }
 
+  /// `Write your Name/Alias`
+  String get tHint {
+    return Intl.message(
+      'Write your Name/Alias',
+      name: 'tHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select Your Sign`
   String get tSign {
     return Intl.message(
@@ -225,6 +235,126 @@ class S {
     return Intl.message(
       'Horoscope',
       name: 'tHoroscope',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Capriconr`
+  String get sCapricorn {
+    return Intl.message(
+      'Capriconr',
+      name: 'sCapricorn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Geminis`
+  String get sGemini {
+    return Intl.message(
+      'Geminis',
+      name: 'sGemini',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Leo`
+  String get sLeo {
+    return Intl.message(
+      'Leo',
+      name: 'sLeo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Libra`
+  String get sLibra {
+    return Intl.message(
+      'Libra',
+      name: 'sLibra',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pices`
+  String get sPisces {
+    return Intl.message(
+      'Pices',
+      name: 'sPisces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sagittarius`
+  String get sSagittarius {
+    return Intl.message(
+      'Sagittarius',
+      name: 'sSagittarius',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scorpio`
+  String get sScorpio {
+    return Intl.message(
+      'Scorpio',
+      name: 'sScorpio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Taurus`
+  String get sTaurus {
+    return Intl.message(
+      'Taurus',
+      name: 'sTaurus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Virgo`
+  String get sVirgo {
+    return Intl.message(
+      'Virgo',
+      name: 'sVirgo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aquarius`
+  String get sAquarius {
+    return Intl.message(
+      'Aquarius',
+      name: 'sAquarius',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aries`
+  String get sAries {
+    return Intl.message(
+      'Aries',
+      name: 'sAries',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancer`
+  String get sCancer {
+    return Intl.message(
+      'Cancer',
+      name: 'sCancer',
       desc: '',
       args: [],
     );

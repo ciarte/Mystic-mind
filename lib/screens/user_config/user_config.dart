@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:horoscope_app/generated/l10n.dart';
 
 import 'package:horoscope_app/providers/providers.dart';
-import 'package:horoscope_app/screens/home/menu_items.dart';
 import 'package:horoscope_app/screens/horoscope/sign_selection_screen.dart';
 
 import 'package:horoscope_app/widgets/widgets.dart';
@@ -48,7 +47,6 @@ class UserConfigScreenState extends ConsumerState<UserConfigScreen> {
                         : Icons.light_mode_outlined,
                     size: 35),
                 onPressed: () {
-                  // LocalStorage.prefs.setBool('selectedMode', isDarkmode);
                   ref.read(darkModeProvider.notifier).toggleDarkMode();
                 },
               ),
@@ -105,16 +103,33 @@ class UserConfigScreenState extends ConsumerState<UserConfigScreen> {
               fontWeight: FontWeight.w500,
             ),
           ),
-          TextFormField(
-            controller: nameController,
-            onFieldSubmitted: (String value) {
-              LocalStorage.prefs.setString('alias', value);
-              final keys = LocalStorage.prefs.getKeys();
-              for (String key in keys) {
-                print(LocalStorage.prefs.getString('selectedLanguage'));
-                print('$key: ${LocalStorage.prefs.get(key)}');
-              }
-            },
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextFormField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+
+                  borderRadius: BorderRadius.circular(
+                      8.0), // Ajusta el valor según tus preferencias
+                ),
+                filled: true,
+                // prefixIcon: const Icon(Icons.person),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.send),
+                  onPressed: () {
+                    String value = nameController.text;
+                    ref.read(aliasProvider.notifier).newAlias(value);
+                  },
+                ),
+                hintText: texts.tHint,
+                hintStyle: const TextStyle(color: Colors.grey),
+              ),
+              controller: nameController,
+              onFieldSubmitted: (String value) {
+                ref.read(aliasProvider.notifier).newAlias(value);
+              },
+            ),
           ),
           const Padding(
             padding: EdgeInsets.fromLTRB(28, 16, 28, 10),
@@ -133,9 +148,9 @@ class UserConfigScreenState extends ConsumerState<UserConfigScreen> {
               controller: ScrollController(),
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3, // 2 tarjetas por columna
-                // crossAxisSpacing: 5, // Espacio entre columnas
-                // mainAxisSpacing: 1, // Espacio entre filas
+                crossAxisCount: 3, //  tarjetas por columna
+                // crossAxisSpacing:  // Espacio entre columnas
+                // mainAxisSpacing:  // Espacio entre filas
               ),
               itemCount: getZodiacItems(context).length,
               itemBuilder: (BuildContext context, int index) {
@@ -166,6 +181,8 @@ class UserConfigScreenState extends ConsumerState<UserConfigScreen> {
                       textAlign: TextAlign.center,
                     ),
                     onTap: () {
+                      LocalStorage.prefs
+                          .setString('selectedSign', zodiacItem.location);
                       setState(() {
                         selectedZodiacIndex = isSelected
                             ? -1

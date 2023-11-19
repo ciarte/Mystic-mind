@@ -9,3 +9,4 @@ export 'tarot/tarot_provider.dart';
 export 'tarot/three_cards_tarot_provider.dart';
 export 'config/language_config_provider.dart';
 export 'phrase/phrase_provider.dart';
+export 'config/alias_provider.dart';

@@ -1,62 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:horoscope_app/generated/l10n.dart';
+import 'package:horoscope_app/providers/config/alias_provider.dart';
 import 'package:horoscope_app/screens/home/menu_items.dart';
-import 'package:horoscope_app/services/local_storage.dart';
 import 'package:horoscope_app/widgets/widgets.dart';
-import 'package:flag/flag.dart';
 
-class MenuView extends StatelessWidget {
+class MenuView extends ConsumerWidget {
   const MenuView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final texts = S.of(context);
-    final name = LocalStorage.prefs.getString('alias');
+    // final name = LocalStorage.prefs.getString('alias');
+    final newAlias = ref.watch(aliasProvider);
     return Column(
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Flag.fromCode(
-            //     texts.bSpanish == 'Español' ? FlagsCode.ES : FlagsCode.US,
-            //     height: 35,
-            //     width: 35,
-            //     fit: BoxFit.fill),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 18.0),
-                child: Center(
-                  child: HeadingWidget(
-                    title: 'Mystic Mind',
-                    subtitle: texts.tTitle,
-                  ),
+              child: Center(
+                child: HeadingWidget(
+                  title: texts.tTitle,
+                  subtitle: newAlias.isNotEmpty
+                      ? '${texts.tSubTitle} $newAlias ?'
+                      : '${texts.tSubTitle} ?',
                 ),
               ),
             ),
-            // IconButton(
-            //   icon: Flag.fromCode(
-            //       texts.bSpanish == 'Español' ? FlagsCode.ES : FlagsCode.US,
-            //       height: 35,
-            //       width: 35,
-            //       fit: BoxFit
-            //           .fill), // Puedes cambiar el icono según tus necesidades
-            //   onPressed: () {
-            //     // Acción cuando se presiona el IconButton
-            //     // Puedes navegar a la pantalla de configuración u realizar otra acción.
-            //   },
-            // ),
           ],
         ),
-        Text(
-            name != null
-                ? '${texts.tSubTitle} $name ?'
-                : '${texts.tSubTitle} ?',
-            style: GoogleFonts.krub(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            )),
         const SizedBox(height: 10),
         GridView.builder(
             shrinkWrap: true,

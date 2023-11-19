@@ -8,7 +8,7 @@ class HoroscopeRequest {
 
     final response = await dio.get(
         'https://horoscope-app-api.vercel.app/api/v1/get-horoscope/daily?sign=$sign&day=$date');
-    print(response.data['data']);
+
     final dayliHoroscope = HoroscopeModel.fromJson(response.data['data']);
 
     return dayliHoroscope.toHoroscopeEntity();
@@ -19,7 +19,6 @@ class HoroscopeRequest {
 
     final response = await dio.get(
         'https://horoscope-app-api.vercel.app/api/v1/get-horoscope/monthly?sign=$sign');
-    print(response.data['data']);
     final dayliHoroscope = HoroscopeModel.fromJson(response.data['data']);
 
     return dayliHoroscope.toHoroscopeEntity();
@@ -37,7 +36,7 @@ class HoroscopeRequest {
         },
       ),
     );
-    print(response.data['daily']);
+
     final dayliHoroscope = (response.data['daily']);
 
     return dayliHoroscope;
@@ -55,7 +54,7 @@ class HoroscopeRequest {
         },
       ),
     );
-    print(response.data[0]['text']);
+
     final dayliHoroscope = (response.data[0]['text']);
 
     return dayliHoroscope;

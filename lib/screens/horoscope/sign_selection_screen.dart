@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:horoscope_app/generated/l10n.dart';
 
 import 'package:horoscope_app/screens/home/menu_items.dart';
 
@@ -73,66 +74,79 @@ class _CustomListTile extends StatelessWidget {
 }
 
 List<MenuItem> getZodiacItems(BuildContext context) {
+  var texts = S.of(context);
   return <MenuItem>[
-    const MenuItem(
-      title: 'Aquarius',
+    MenuItem(
+      title: texts.sAquarius,
       location: 'aquarius',
       image: 'assets/matchs_cards/aquarius.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Aries',
+    MenuItem(
+      title: texts.sAries,
       location: 'aries',
       image: 'assets/matchs_cards/aries.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Cancer',
+    MenuItem(
+      title: texts.sCancer,
       location: 'cancer',
       image: 'assets/matchs_cards/cancer.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Capricorn',
+    MenuItem(
+      title: texts.sCapricorn,
       location: 'capricorn',
       image: 'assets/matchs_cards/capricorn.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Gemini',
+    MenuItem(
+      title: texts.sGemini,
       location: 'gemini',
       image: 'assets/matchs_cards/gemini.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Leo',
+    MenuItem(
+      title: texts.sLeo,
       location: 'leo',
       image: 'assets/matchs_cards/leo.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Libra',
+    MenuItem(
+      title: texts.sLibra,
       location: 'libra',
       image: 'assets/matchs_cards/libra.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Pisces',
+    MenuItem(
+      title: texts.sPisces,
       location: 'pisces',
       image: 'assets/matchs_cards/pisces.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Sagittarius',
+    MenuItem(
+      title: texts.sSagittarius,
       location: 'sagittarius',
       image: 'assets/matchs_cards/sagittarius.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Scorpio',
+    MenuItem(
+      title: texts.sScorpio,
       location: 'scorpio',
       image: 'assets/matchs_cards/scorpio.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Taurus',
+    MenuItem(
+      title: texts.sTaurus,
       location: 'taurus',
       image: 'assets/matchs_cards/taurus.png',
+      isSelected: false,
     ),
-    const MenuItem(
-      title: 'Virgo',
+    MenuItem(
+      title: texts.sVirgo,
       location: 'virgo',
       image: 'assets/matchs_cards/virgo.png',
+      isSelected: false,
     ),
   ];
 }

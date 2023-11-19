@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:ui' as ui;
 import 'package:horoscope_app/db/entities/message_entity.dart';
 import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/infrastructure/datasources/oracle_answer.dart';

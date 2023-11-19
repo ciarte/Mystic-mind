@@ -35,12 +35,26 @@ class MessageLookup extends MessageLookupByLibrary {
         "mSubtitle": MessageLookupByLibrary.simpleMessage(
             "Elije una carta para obtener una lectura"),
         "mToday": MessageLookupByLibrary.simpleMessage("Hoy"),
+        "sAquarius": MessageLookupByLibrary.simpleMessage("Acuario"),
+        "sAries": MessageLookupByLibrary.simpleMessage("Aries"),
+        "sCancer": MessageLookupByLibrary.simpleMessage("Cancer"),
+        "sCapricorn": MessageLookupByLibrary.simpleMessage("Capricornio"),
+        "sGemini": MessageLookupByLibrary.simpleMessage("Geminis"),
+        "sLeo": MessageLookupByLibrary.simpleMessage("Leo"),
+        "sLibra": MessageLookupByLibrary.simpleMessage("Libra"),
+        "sPisces": MessageLookupByLibrary.simpleMessage("Picis"),
+        "sSagittarius": MessageLookupByLibrary.simpleMessage("Sagitario"),
+        "sScorpio": MessageLookupByLibrary.simpleMessage("Escorpio"),
+        "sTaurus": MessageLookupByLibrary.simpleMessage("Tauro"),
+        "sVirgo": MessageLookupByLibrary.simpleMessage("Virgo"),
         "tAdvice":
             MessageLookupByLibrary.simpleMessage("Consejo para tu signo"),
         "tAlias": MessageLookupByLibrary.simpleMessage("Elije tu Nombre"),
         "tCompatibility":
             MessageLookupByLibrary.simpleMessage("Compatibilidad entre signos"),
         "tConfig": MessageLookupByLibrary.simpleMessage("Configuracion"),
+        "tHint":
+            MessageLookupByLibrary.simpleMessage("Escribe tu Nombre/Alias"),
         "tHoroscope": MessageLookupByLibrary.simpleMessage("Horoscopo"),
         "tLanguage":
             MessageLookupByLibrary.simpleMessage("Selecciona tu Lenguaje"),

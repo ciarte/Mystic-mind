@@ -5,9 +5,12 @@ class MenuItem {
   final String title;
   final String location;
   final String image;
-
-  const MenuItem(
-      {required this.title, required this.location, required this.image});
+  late bool? isSelected;
+  MenuItem(
+      {this.isSelected,
+      required this.title,
+      required this.location,
+      required this.image});
 }
 
 List<MenuItem> getAppMenuItems(BuildContext context) {
