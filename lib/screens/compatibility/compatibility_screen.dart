@@ -68,7 +68,7 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                         Color.fromRGBO(23, 5, 66, 1),
                       ])),
           child: Column(children: [
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             SizedBox(
                 height: 200,
                 width: double.infinity,
