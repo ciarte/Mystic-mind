@@ -18,6 +18,20 @@ class CompatibilityResult extends ConsumerWidget {
     final isDarkmode = ref.watch(darkModeProvider);
     final phrase = ref.watch(compatibilityProvider(sign1, sign2, language));
 
+    final interstitialAdAsync = ref.watch(adInterstitialProvider);
+    ref.listen(adInterstitialProvider, (previous, next) {
+      if (!next.hasValue) return;
+      if (next.value == null) return;
+
+      next.value!.show();
+    });
+
+    if (interstitialAdAsync.isLoading) {
+      return const Scaffold(
+        body: Center(child: Text('Cargando...')),
+      );
+    }
+
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(

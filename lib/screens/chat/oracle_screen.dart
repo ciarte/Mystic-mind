@@ -23,6 +23,21 @@ class _ChatView extends ConsumerWidget {
     final chatProvider = ref.watch(chatsProvider);
 
     final isDarkmode = ref.watch(darkModeProvider);
+
+    final interstitialAdAsync = ref.watch(adInterstitialProvider);
+    ref.listen(adInterstitialProvider, (previous, next) {
+      if (!next.hasValue) return;
+      if (next.value == null) return;
+
+      next.value!.show();
+    });
+
+    if (interstitialAdAsync.isLoading) {
+      return const Scaffold(
+        body: Center(child: Text('Cargando...')),
+      );
+    }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: !isDarkmode

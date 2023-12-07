@@ -92,34 +92,3 @@ class _CustomListTile extends StatelessWidget {
     );
   }
 }
-
-// class BannerAds extends ConsumerStatefulWidget {
-//   const BannerAds({Key? key}) : super(key: key);
-
-//   @override
-//   _BannerAdsState createState() => _BannerAdsState();
-// }
-
-// class _BannerAdsState extends ConsumerState<BannerAds> {
-//   // BannerAd banner;
-
-//   @override
-//   // void didChangeDependencies() {
-//   //   super.didChangeDependencies();
-//   //   final adStateAsync = ref.watch(adStateProvider);
-//   //   final adState = adStateAsync.asData?.value;
-//   //   if (adState != null) {
-//   //     banner = BannerAd(
-//   //       adUnitId: adState.bannerAdUnitId,
-//   //       request: AdRequest(),
-//   //       size: AdSize.banner,
-//   //       listener: null,
-//   //     );
-//   //   }
-//   // }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }

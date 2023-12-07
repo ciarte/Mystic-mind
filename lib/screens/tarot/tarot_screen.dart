@@ -51,7 +51,7 @@ class TarotScreenState extends ConsumerState<TarotScreen> {
           //   },
           // ),
           backgroundColor: const Color.fromARGB(255, 202, 140, 137),
-          content: Container(height: 200, child: Text(desc)),
+          content: SizedBox(height: 200, child: Text(desc)),
         ),
       );
     });
@@ -65,6 +65,21 @@ class TarotScreenState extends ConsumerState<TarotScreen> {
 
     final description = ref.watch(animatedStartProvider);
     final image = ref.watch(imageTarotStartProvider);
+
+    final interstitialAdAsync = ref.watch(adInterstitialProvider);
+    ref.listen(adInterstitialProvider, (previous, next) {
+      if (!next.hasValue) return;
+      if (next.value == null) return;
+
+      next.value!.show();
+    });
+
+    if (interstitialAdAsync.isLoading) {
+      return const Scaffold(
+        body: Center(child: Text('Cargando...')),
+      );
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: Text(texts.tTarot),
@@ -343,7 +358,7 @@ class _AnimatedCardState extends ConsumerState<AnimatedCard>
   @override
   void initState() {
     controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 2000));
+        vsync: this, duration: const Duration(milliseconds: 1500));
 
     rotation = Tween(begin: 0.0, end: 4.0 * Math.pi)
         .animate(CurvedAnimation(parent: controller, curve: Curves.easeOut));

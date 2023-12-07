@@ -5,7 +5,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 // TODO: replace this test ad unit with your own ad unit.
 
 final adInterstitialId = Platform.isAndroid
-    ? 'ca-app-pub-3940256099942544/1033173712'
+    ? 'ca-app-pub-5742058317316081/7872192525'
     : 'ca-app-pub-3940256099942544/4411468910';
 
 final adRewardedId = Platform.isAndroid
@@ -13,7 +13,7 @@ final adRewardedId = Platform.isAndroid
     : 'ca-app-pub-3940256099942544/1712485313';
 
 final adBannerId = Platform.isAndroid
-    ? 'ca-app-pub-3940256099942544/5224354917'
+    ? 'ca-app-pub-5742058317316081/6635811095'
     : 'ca-app-pub-3940256099942544/2934735716';
 
 class AdmobPlugin {
@@ -30,11 +30,11 @@ class AdmobPlugin {
       listener: BannerAdListener(
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
-          print('$ad loaded.');
+          // print('$ad loaded.');
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, err) {
-          print('BannerAd failed to load: $err');
+          // print('BannerAd failed to load: $err');
           // Dispose the ad here to free resources.
           ad.dispose();
         },
@@ -74,7 +74,7 @@ class AdmobPlugin {
           },
           // Called when an ad request failed.
           onAdFailedToLoad: (LoadAdError error) {
-            print('RewardedAd failed to load: $error');
+            // print('RewardedAd failed to load: $error');
             completer.completeError(error);
           },
         ));
@@ -107,13 +107,13 @@ class AdmobPlugin {
                 },
                 // Called when a click is recorded for an ad.
                 onAdClicked: (ad) {});
-            print('$ad loaded.');
+            // print('$ad loaded.');
             // Keep a reference to the ad so you can show it later.
             completer.complete(ad);
           },
           // Called when an ad request failed.
           onAdFailedToLoad: (LoadAdError error) {
-            print('InterstitialAd failed to load: $error');
+            // print('InterstitialAd failed to load: $error');
           },
         ));
     return completer.future;

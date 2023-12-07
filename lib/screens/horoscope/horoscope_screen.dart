@@ -38,14 +38,6 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
     }
   }
 
-  void printLocalStorage() async {
-    final prefs = await SharedPreferences.getInstance();
-    final keys = prefs.getKeys();
-    for (String key in keys) {
-      print('$key: ${prefs.get(key)}');
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -62,6 +54,20 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
         : AsyncValue.error('No sign selected', StackTrace.current);
 
     final isDarkmode = ref.watch(darkModeProvider);
+    final interstitialAdAsync = ref.watch(adInterstitialProvider);
+    ref.listen(adInterstitialProvider, (previous, next) {
+      if (!next.hasValue) return;
+      if (next.value == null) return;
+
+      next.value!.show();
+    });
+
+    if (interstitialAdAsync.isLoading) {
+      return const Scaffold(
+        body: Center(child: Text('Cargando...')),
+      );
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -75,7 +81,7 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                 final newSign = await Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => SignSelectionScreen()));
+                        builder: (context) => const SignSelectionScreen()));
                 if (newSign != null) {
                   setState(() {
                     mySign = newSign;
@@ -87,12 +93,7 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
           ],
         ),
         body: mySign.isEmpty
-            ? SignSelectionScreen()
-            // setState(() {
-            //   mySign = sign;
-            //   _saveSignToSharedPreferences(sign);
-            // });
-
+            ? const SignSelectionScreen()
             : Container(
                 decoration: !isDarkmode
                     ? const BoxDecoration(
@@ -167,7 +168,6 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                                     const TextStyle(color: Colors.white),
                                   )),
                           onPressed: () {
-                            printLocalStorage();
                             setState(() {
                               date = 'today';
                               isSelected = true;
@@ -197,7 +197,6 @@ class HoroscopeScreenState extends ConsumerState<HoroscopeScreen> {
                                   )),
                           onPressed: () {
                             setState(() {
-                              printLocalStorage();
                               date = 'monthly';
                               isSelected = false;
                             });

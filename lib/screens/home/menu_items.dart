@@ -41,15 +41,15 @@ List<MenuItem> getAppMenuItems(BuildContext context) {
       image: 'assets/consejo.png',
     ),
     //Ads
-    MenuItem(
-      title: 'Ads Full',
-      location: '/ad-fullscreen',
-      image: 'assets/phrase2.png',
-    ),
-    MenuItem(
-      title: 'Ads rewards',
-      location: '/ad-reward',
-      image: 'assets/phrase1.png',
-    ),
+    // MenuItem(
+    //   title: 'Ads Full',
+    //   location: '/ad-fullscreen',
+    //   image: 'assets/phrase2.png',
+    // ),
+    // MenuItem(
+    //   title: 'Ads rewards',
+    //   location: '/ad-reward',
+    //   image: 'assets/phrase1.png',
+    // ),
   ];
 }
