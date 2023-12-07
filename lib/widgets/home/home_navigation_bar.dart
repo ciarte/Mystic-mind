@@ -6,7 +6,7 @@ import 'package:horoscope_app/screens/screens.dart';
 import 'package:horoscope_app/widgets/widgets.dart';
 
 class HomeNavigationBar extends ConsumerWidget {
-  const HomeNavigationBar();
+  const HomeNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context, ref) {

@@ -5,14 +5,13 @@ import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/providers/providers.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:horoscope_app/services/local_storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await AdmobPlugin.initialize();
   // final adState = AdState(initFuture);
-  await LocalStorage.configurePrefs();
+  // await SharedPreferencePluggin.prefs();
   // Obtener el valor guardado en localStorage
 
   runApp(const ProviderScope(

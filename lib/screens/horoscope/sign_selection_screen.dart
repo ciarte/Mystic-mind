@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:horoscope_app/config/plugins/shared_preferences_pluggin.dart';
 import 'package:horoscope_app/generated/l10n.dart';
 
 import 'package:horoscope_app/screens/home/menu_items.dart';
-
-import '../../services/local_storage.dart';
 
 class SignSelectionScreen extends StatelessWidget {
   // final Function(String) onSignSelected;
@@ -46,7 +45,8 @@ class _CustomListTile extends StatelessWidget {
         Card(
             child: InkWell(
           onTap: () {
-            LocalStorage.prefs.setString('selectedSign', menuItem.location);
+            SharedPreferencePluggin.setString(
+                'selectedSign', menuItem.location);
             Navigator.of(context).pop(menuItem.location);
           },
           child: ClipRRect(

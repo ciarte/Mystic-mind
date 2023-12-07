@@ -10,4 +10,7 @@ export 'tarot/three_cards_tarot_provider.dart';
 export 'config/language_config_provider.dart';
 export 'phrase/phrase_provider.dart';
 export 'config/alias_provider.dart';
+
+//ads
 export 'ads/admob_provider.dart';
+export 'ads/admob_points_provider.dart';

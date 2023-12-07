@@ -11,4 +11,4 @@ export 'tips/tips_screen.dart';
 
 //Ads
 export 'ads/ad_full_screen.dart';
-export 'ads/ad_reward.dart';
+export 'ads/ad_reward_screen.dart';
