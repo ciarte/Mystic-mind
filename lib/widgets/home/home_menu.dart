@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+// import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/providers/config/alias_provider.dart';
 import 'package:horoscope_app/screens/home/menu_items.dart';
+// import 'package:horoscope_app/services/ad_state.dart';
 import 'package:horoscope_app/widgets/widgets.dart';
 
 class MenuView extends ConsumerWidget {
@@ -14,40 +16,42 @@ class MenuView extends ConsumerWidget {
     final texts = S.of(context);
     // final name = LocalStorage.prefs.getString('alias');
     final newAlias = ref.watch(aliasProvider);
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Center(
-                child: HeadingWidget(
-                  title: texts.tTitle,
-                  subtitle: newAlias.isNotEmpty
-                      ? '${texts.tSubTitle} $newAlias ?'
-                      : '${texts.tSubTitle} ?',
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Center(
+                  child: HeadingWidget(
+                    title: texts.tTitle,
+                    subtitle: newAlias.isNotEmpty
+                        ? '${texts.tSubTitle} $newAlias ?'
+                        : '${texts.tSubTitle} ?',
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // 2 tarjetas por columna
-              crossAxisSpacing: 15, // Espacio entre columnas
-              mainAxisSpacing: 6, // Espacio entre filas
-            ),
-            itemCount: getAppMenuItems(context).length,
-            itemBuilder: (BuildContext context, int index) {
-              final menuItem = getAppMenuItems(context)[index];
-              return _CustomListTile(
-                menuItem: menuItem,
-              );
-            }),
-      ],
+            ],
+          ),
+          const SizedBox(height: 10),
+          GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // 2 tarjetas por columna
+                crossAxisSpacing: 15, // Espacio entre columnas
+                mainAxisSpacing: 6, // Espacio entre filas
+              ),
+              itemCount: getAppMenuItems(context).length,
+              itemBuilder: (BuildContext context, int index) {
+                final menuItem = getAppMenuItems(context)[index];
+                return _CustomListTile(
+                  menuItem: menuItem,
+                );
+              }),
+        ],
+      ),
     );
   }
 }
@@ -76,16 +80,46 @@ class _CustomListTile extends StatelessWidget {
                 ),
               ),
             )),
-        Text(
-          menuItem.title,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            height: 34 / 14,
-          ),
-          textAlign: TextAlign.center,
-        )
+        Text(menuItem.title,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              height: 34 / 14,
+            ),
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis)
       ],
     );
   }
 }
+
+// class BannerAds extends ConsumerStatefulWidget {
+//   const BannerAds({Key? key}) : super(key: key);
+
+//   @override
+//   _BannerAdsState createState() => _BannerAdsState();
+// }
+
+// class _BannerAdsState extends ConsumerState<BannerAds> {
+//   // BannerAd banner;
+
+//   @override
+//   // void didChangeDependencies() {
+//   //   super.didChangeDependencies();
+//   //   final adStateAsync = ref.watch(adStateProvider);
+//   //   final adState = adStateAsync.asData?.value;
+//   //   if (adState != null) {
+//   //     banner = BannerAd(
+//   //       adUnitId: adState.bannerAdUnitId,
+//   //       request: AdRequest(),
+//   //       size: AdSize.banner,
+//   //       listener: null,
+//   //     );
+//   //   }
+//   // }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+//   }
+// }

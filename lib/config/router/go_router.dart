@@ -53,6 +53,19 @@ GoRouter appRouter(AppRouterRef ref) {
           return const UserConfigScreen();
         },
       ),
+      //Ads
+      GoRoute(
+        path: '/ad-fullscreen',
+        builder: (BuildContext context, GoRouterState state) {
+          return const AdsFullScreen();
+        },
+      ),
+      GoRoute(
+        path: '/ad-reward',
+        builder: (BuildContext context, GoRouterState state) {
+          return const AdsRewardScreen();
+        },
+      ),
     ],
   );
 }

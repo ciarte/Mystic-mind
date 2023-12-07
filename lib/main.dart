@@ -9,10 +9,14 @@ import 'package:horoscope_app/services/local_storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await AdmobPlugin.initialize();
+  // final adState = AdState(initFuture);
   await LocalStorage.configurePrefs();
   // Obtener el valor guardado en localStorage
 
   runApp(const ProviderScope(
+    // overrides: [adStateProvider.overrideWith((ref) => adState)],
     child: MyApp(),
   ));
 }
