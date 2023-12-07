@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:horoscope_app/config/config.dart';
 import 'package:horoscope_app/generated/l10n.dart';
 import 'package:horoscope_app/providers/providers.dart';
@@ -10,8 +11,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await AdmobPlugin.initialize();
-  // final adState = AdState(initFuture);
-  // await SharedPreferencePluggin.prefs();
+  MobileAds.instance.initialize();
+
   // Obtener el valor guardado en localStorage
 
   runApp(const ProviderScope(
