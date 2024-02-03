@@ -80,13 +80,19 @@ class CompatibilityResult extends ConsumerWidget {
               Center(
                   child: Column(
                 children: [
-                  Row(children: [
-                    Image.asset(isDarkmode
-                        ? 'assets/matchs_cards/${'${sign1}_dark'}.png'
-                        : 'assets/matchs_cards/$sign1.png'),
-                    Image.asset(isDarkmode
-                        ? 'assets/matchs_cards/${'${sign2}_dark'}.png'
-                        : 'assets/matchs_cards/$sign2.png'),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Image.asset(
+                        width: 150,
+                        height: 150,
+                        isDarkmode
+                            ? 'assets/matchs_cards/${'${sign1}_dark'}.png'
+                            : 'assets/matchs_cards/$sign1.png'),
+                    Image.asset(
+                        width: 150,
+                        height: 150,
+                        isDarkmode
+                            ? 'assets/matchs_cards/${'${sign2}_dark'}.png'
+                            : 'assets/matchs_cards/$sign2.png'),
                   ]),
                   Expanded(
                     child: SingleChildScrollView(

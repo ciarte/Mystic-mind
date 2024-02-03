@@ -16,8 +16,10 @@ class CompatibilityScreen extends ConsumerStatefulWidget {
 class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
   late int firstSelectedIndex;
   late int secondSelectedIndex;
-  late String firstSelectedZodiac;
-  late String secondSelectedZodiac;
+  late String firstSelectedZodiac = 'aquarius';
+  late String secondSelectedZodiac = 'aquarius';
+  final SwiperController _firstSwiperController = SwiperController();
+  final SwiperController _secondSwiperController = SwiperController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,34 +75,23 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                 height: 200,
                 width: double.infinity,
                 child: Swiper(
-                    // loop: false,
+                    controller: _firstSwiperController,
+                    onIndexChanged: (index) {
+                      setState(() {
+                        firstSelectedIndex = index;
+                        firstSelectedZodiac =
+                            getAppMenuItems(context)[index].location;
+                      });
+                    },
                     viewportFraction: 0.5,
                     scale: 0.5,
-                    // layout: SwiperLayout.CUSTOM,
-                    // customLayoutOption:
-                    //     CustomLayoutOption(startIndex: -1, stateCount: 3)
-                    //       ..addRotate([-0.50, 0.0, 0.50])
-                    //       ..addTranslate([
-                    //         const Offset(-190.0, -15.0),
-                    //         const Offset(0.0, 0.0),
-                    //         const Offset(190.0, -15.0)
-                    //       ]),
                     itemWidth: 150.0,
                     itemHeight: 250.0,
                     itemCount: getAppMenuItems(context).length,
                     itemBuilder: (context, index) {
-                      // print('index segunda seleccion: $index');
                       final zodiac = getAppMenuItems(context)[index];
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            firstSelectedIndex = index;
-                            firstSelectedZodiac = zodiac.location;
-                          });
-                        },
-                        child: _Slide(
-                          movie: isDarkmode ? zodiac.imageDark : zodiac.image,
-                        ),
+                      return _Slide(
+                        movie: isDarkmode ? zodiac.imageDark : zodiac.image,
                       );
                     })),
             const Icon(
@@ -112,34 +103,24 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                 height: 200,
                 width: double.infinity,
                 child: Swiper(
+                    controller: _secondSwiperController,
+                    onIndexChanged: (index) {
+                      setState(() {
+                        secondSelectedIndex = index;
+                        secondSelectedZodiac =
+                            getAppMenuItems(context)[index].location;
+                      });
+                    },
                     // loop: false,
                     viewportFraction: 0.5,
                     scale: 0.5,
-                    // layout: SwiperLayout.CUSTOM,
-                    // customLayoutOption:
-                    //     CustomLayoutOption(startIndex: -1, stateCount: 3)
-                    //       ..addRotate([-0.50, 0.0, 0.50])
-                    //       ..addTranslate([
-                    //         const Offset(-190.0, -15.0),
-                    //         const Offset(0.0, 0.0),
-                    //         const Offset(190.0, -15.0)
-                    //       ]),
                     itemWidth: 150.0,
                     itemHeight: 250.0,
                     itemCount: getAppMenuItems(context).length,
                     itemBuilder: (context, index) {
-                      // print('index segunda seleccion: $index');
                       final zodiac = getAppMenuItems(context)[index];
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            secondSelectedIndex = index;
-                            secondSelectedZodiac = zodiac.location;
-                          });
-                        },
-                        child: _Slide(
-                          movie: isDarkmode ? zodiac.imageDark : zodiac.image,
-                        ),
+                      return _Slide(
+                        movie: isDarkmode ? zodiac.imageDark : zodiac.image,
                       );
                     })),
             Padding(
@@ -148,6 +129,7 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
               child: LoginButton(
                   nameButton: 'Comparar',
                   onPressed: () {
+                    print('$firstSelectedZodiac, $secondSelectedZodiac');
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -157,10 +139,7 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
                         ),
                       ),
                     );
-                  }
-                  // print(
-                  //     'boton con $firstSelectedZodiac & $secondSelectedZodiac');
-                  ),
+                  }),
             ),
           ]),
         ),
