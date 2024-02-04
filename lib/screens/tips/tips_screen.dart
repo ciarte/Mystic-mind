@@ -89,7 +89,7 @@ class Tips extends ConsumerWidget {
 
 class _PhraseText extends StatelessWidget {
   final data;
-  const _PhraseText({super.key, this.data});
+  const _PhraseText({this.data});
 
   @override
   Widget build(BuildContext context) {

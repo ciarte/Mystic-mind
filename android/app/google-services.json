@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:669731608512:android:a6097354c8bb99f4f9da25",
         "android_client_info": {
-          "package_name": "com.example.horoscope_app"
+          "package_name": "com.gabriel.horoscope_app"
         }
       },
       "oauth_client": [
@@ -35,7 +35,7 @@
               "client_id": "669731608512-1erdkkv1mgk3n7qdhv8nq3n0h9dt38s0.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.horoscopeapp"
+                "bundle_id": "com.gabriel.horoscopeapp"
               }
             }
           ]

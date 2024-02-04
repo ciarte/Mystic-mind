@@ -48,7 +48,7 @@ class CustomTextForm extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hint,
             filled: true,
-            fillColor: Color.fromRGBO(255, 255, 255, 0.6),
+            fillColor: const Color.fromRGBO(255, 255, 255, 0.6),
             enabledBorder: border,
             focusedBorder: border.copyWith(
                 borderSide: const BorderSide(

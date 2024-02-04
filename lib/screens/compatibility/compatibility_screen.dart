@@ -129,7 +129,6 @@ class CompatibilityScreenState extends ConsumerState<CompatibilityScreen> {
               child: LoginButton(
                   nameButton: 'Comparar',
                   onPressed: () {
-                    print('$firstSelectedZodiac, $secondSelectedZodiac');
                     Navigator.push(
                       context,
                       MaterialPageRoute(

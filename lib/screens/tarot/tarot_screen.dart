@@ -310,6 +310,7 @@ class _CardDescription extends StatefulWidget {
 class _CardDescriptionState extends State<_CardDescription> {
   double opacityLevel = 0.0;
 
+  @override
   void initState() {
     opacityLevel = 0.0;
     super.initState();
@@ -341,7 +342,7 @@ class _CardDescriptionState extends State<_CardDescription> {
 //Animacion
 
 class AnimatedCard extends ConsumerStatefulWidget {
-  AnimatedCard({super.key});
+  const AnimatedCard({super.key});
 
   @override
   _AnimatedCardState createState() => _AnimatedCardState();

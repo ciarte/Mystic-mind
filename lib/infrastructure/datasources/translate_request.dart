@@ -33,10 +33,7 @@ class TranslationService {
     try {
       final response =
           await _dio.post(url, options: Options(headers: headers), data: body);
-
-      print(response.data);
       if (response.statusCode == 200) {
-        print(response.data['data']['translatedText']);
         return response.data['data']['translatedText'];
       } else {
         return text;
